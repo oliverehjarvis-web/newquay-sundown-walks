@@ -61,13 +61,12 @@ nav {
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
-    /* 1. REVERTED: Logo on left, links on right */
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     height: 70px;
 }
 
-/* 2. RE-ADDED: Styles for logo in nav */
+/* Updated logo styles */
 nav .logo-container {
     display: flex;
     align-items: center;
@@ -78,7 +77,6 @@ nav .logo-img {
     width: auto;
 }
 
-
 nav ul {
     list-style: none;
     display: flex;
@@ -87,7 +85,6 @@ nav ul {
 }
 
 nav ul li {
-    /* 3. REVERTED: Spacing for right-aligned links */
     margin-left: 20px;
 }
 
@@ -96,7 +93,7 @@ nav ul li a {
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.3s;
-    font-size: 0.9em; 
+    font-size: 0.9em; /* Slightly smaller to fit more items */
 }
 
 nav ul li a:hover {
@@ -115,8 +112,6 @@ nav ul li a:hover {
     text-align: center;
     max-width: 100%;
 }
-
-/* 4. REMOVED: .hero-logo rule deleted */
 
 .hero h1 {
     color: var(--white-color);
