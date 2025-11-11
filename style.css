@@ -1,10 +1,11 @@
 /* ======== GLOBAL STYLES ======== */
 :root {
-    --primary-color: #2c3e50; /* Dark Dusk Blue */
-    --secondary-color: #e67e22; /* Warm Orange (like a sunset) */
-    --light-color: #ecf0f1;   /* Light Grey */
+    /* Updated Brand Colours */
+    --primary-color: #526C83;   /* Dusk Blue */
+    --secondary-color: #E7A154; /* Warm Orange/Gold */
+    --light-color: #FEF6DF;     /* Cream/Light */
     --white-color: #ffffff;
-    --text-color: #333;
+    --text-color: #000000;      /* Black */
 }
 
 html {
@@ -49,7 +50,7 @@ img {
 /* ======== HEADER & NAVIGATION ======== */
 header {
     background: var(--white-color);
-    border-bottom: 1px solid var(--light-color);
+    border-bottom: 1px solid #ddd; /* Darker border for contrast with light bg */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -65,10 +66,15 @@ nav {
     height: 70px;
 }
 
-nav .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: var(--primary-color);
+/* Updated logo styles */
+nav .logo-container {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo-img {
+    height: 50px; /* Adjust height as needed */
+    width: auto;
 }
 
 nav ul {
@@ -87,6 +93,7 @@ nav ul li a {
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.3s;
+    font-size: 0.9em; /* Slightly smaller to fit more items */
 }
 
 nav ul li a:hover {
@@ -97,13 +104,7 @@ nav ul li a:hover {
 .hero {
     background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('images/collie-on-beach.jpg');
     background-size: cover;
-    
-    /* THIS IS THE FIX: 
-      Changed 'center' to 'center 70%' to push the image up.
-      You can also try 'center 80%' or 'center 60%' if this isn't quite right.
-    */
     background-position: center 80%;
-    
     background-attachment: fixed; /* Parallax effect */
 
     color: var(--white-color);
@@ -137,7 +138,7 @@ nav ul li a:hover {
 }
 
 .cta-button:hover {
-    background: #d35400; /* Darker orange */
+    background: #c88a44; /* Darker shade of new secondary color */
 }
 
 /* ======== SERVICES SECTION ======== */
@@ -173,6 +174,14 @@ nav ul li a:hover {
     position: absolute;
     left: 0;
     top: 5px;
+}
+
+/* ======== NEW ABOUT SECTION ======== */
+#about p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1em;
+    line-height: 1.7;
 }
 
 /* ======== TRUST SECTION ======== */
@@ -226,17 +235,104 @@ nav ul li a:hover {
     transform: scale(1.05);
 }
 
+/* ======== NEW REVIEWS SECTION ======== */
+#reviews {
+    background: var(--light-color);
+}
+
+#reviews p {
+    font-size: 1.1em;
+}
+
+.reviews-container {
+    display: flex;
+    overflow-x: auto; /* This creates the horizontal scroll */
+    padding: 20px 10px;
+    gap: 20px;
+    scroll-snap-type: x mandatory; /* Optional: for a "snap" effect */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.review-card {
+    flex: 0 0 320px; /* Each card is 320px wide, and doesn't shrink or grow */
+    background: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 25px;
+    text-align: left;
+    scroll-snap-align: start; /* For the "snap" effect */
+    display: flex;
+    flex-direction: column;
+}
+
+.review-card p {
+    font-size: 0.95em;
+    flex-grow: 1; /* Makes p tag take available space */
+}
+
+.review-card .stars {
+    color: var(--secondary-color);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.review-card .review-author {
+    font-weight: bold;
+    margin-top: 15px;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+.review-card .review-source {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Style scrollbar for a better look */
+.reviews-container::-webkit-scrollbar {
+    height: 8px;
+}
+.reviews-container::-webkit-scrollbar-track {
+    background: #eee;
+    border-radius: 4px;
+}
+.reviews-container::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+.reviews-container::-webkit-scrollbar-thumb:hover {
+    background: #c88a44; 
+}
+
 
 /* ======== CONTACT SECTION ======== */
-.contact-placeholder {
-    background: #f4f4f4;
-    border: 1px dashed #ccc;
+/* Updated contact styles */
+.contact-details {
+    background: var(--light-color);
+    border: none;
     padding: 30px;
     border-radius: 8px;
     max-width: 500px;
     margin: 30px auto 0;
     font-weight: 500;
+    font-size: 1.2em;
 }
+
+.contact-details p {
+    margin: 15px 0;
+}
+
+.contact-details a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
 
 /* ======== FOOTER ======== */
 footer {
@@ -268,19 +364,30 @@ footer {
     nav {
         flex-direction: column;
         height: auto;
-        padding-top: 15px;
+        padding-top: 10px;
+        padding-bottom: 0;
+    }
+    
+    nav .logo-container {
+        margin-bottom: 10px;
     }
 
     nav ul {
         width: 100%;
         justify-content: center;
-        padding: 15px 0;
+        padding: 10px 0;
         background: #f9f9f9;
-        margin-top: 10px;
+        margin-top: 0;
+        /* Allow wrapping on small screens */
+        flex-wrap: wrap; 
     }
     
     nav ul li {
-        margin: 0 10px;
+        margin: 5px 8px; /* Adjust spacing */
+    }
+    
+    nav ul li a {
+        font-size: 0.9em;
     }
 
     .hero h1 {
@@ -289,5 +396,10 @@ footer {
     
     .hero .subtitle {
         font-size: 1.1em;
+    }
+    
+    /* Make review cards slightly smaller on mobile */
+    .review-card {
+        flex: 0 0 280px; 
     }
 }
