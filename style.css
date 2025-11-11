@@ -102,7 +102,7 @@ nav ul li a:hover {
       Changed 'center' to 'center 70%' to push the image up.
       You can also try 'center 80%' or 'center 60%' if this isn't quite right.
     */
-    background-position: center 90%;
+    background-position: center 50%;
     
     background-attachment: fixed; /* Parallax effect */
 
