@@ -95,8 +95,9 @@ nav ul li a:hover {
 
 /* ======== HERO SECTION ======== */
 .hero {
-    /* NEW: Background Image */
-    background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('images/collie-on-beach.jpg');
+    /* FIX: Added '/' to the url path
+    */
+    background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('/images/collie-on-beach.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Parallax effect */
@@ -136,15 +137,6 @@ nav ul li a:hover {
 }
 
 /* ======== SERVICES SECTION ======== */
-#services .service-box { /* This style is no longer used, we have a new layout */
-    background: #f9f9f9;
-    border: 1px solid var(--light-color);
-    border-radius: 8px;
-    padding: 30px;
-    text-align: left;
-}
-
-/* NEW: 2-Column Layout */
 .service-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -204,7 +196,7 @@ nav ul li a:hover {
     color: var(--secondary-color);
 }
 
-/* NEW: Photo Gallery */
+/* Photo Gallery */
 .gallery-title {
     color: var(--primary-color);
     margin-top: 60px;
@@ -257,12 +249,10 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    /* NEW: Stack service columns on mobile */
     .service-container {
         grid-template-columns: 1fr;
     }
     
-    /* NEW: Stack gallery on mobile */
     .photo-gallery {
         grid-template-columns: 1fr;
     }
