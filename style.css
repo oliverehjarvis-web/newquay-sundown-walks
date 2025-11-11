@@ -86,7 +86,7 @@ nav ul li a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
-    transition: color 0..3s;
+    transition: color 0.3s;
 }
 
 nav ul li a:hover {
@@ -95,17 +95,23 @@ nav ul li a:hover {
 
 /* ======== HERO SECTION ======== */
 .hero {
-    /* FIX: REMOVED the leading '/'
-    */
     background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('images/collie-on-beach.jpg');
     background-size: cover;
-    background-position: center;
+    
+    /* THIS IS THE FIX: 
+      Changed 'center' to 'center 70%' to push the image up.
+      You can also try 'center 80%' or 'center 60%' if this isn't quite right.
+    */
+    background-position: center 70%;
+    
     background-attachment: fixed; /* Parallax effect */
 
     color: var(--white-color);
     padding: 100px 20px; /* More padding */
     text-align: center;
     max-width: 100%;
+}
+
 .hero h1 {
     color: var(--white-color);
     font-size: 2.8em;
