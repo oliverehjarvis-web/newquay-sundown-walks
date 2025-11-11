@@ -95,7 +95,7 @@ nav ul li a:hover {
 
 /* ======== HERO SECTION ======== */
 .hero {
-    /* FIX: Added '/' to the url path
+    /* FIX: Using the root-relative path.
     */
     background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('/images/collie-on-beach.jpg');
     background-size: cover;
