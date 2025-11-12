@@ -6,6 +6,7 @@
     --light-color: #FEF6DF;     /* Cream/Light */
     --white-color: #ffffff;
     --text-color: #000000;      /* Black */
+    --button-text-color: #ffffff; /* NEW: Add this variable for button text */
 
     /* NEW: Hero gradient overlay colors for JavaScript control */
     --hero-gradient-start: rgba(44, 62, 80, 0.7);
@@ -146,7 +147,7 @@ nav ul li a:hover {
 
 .cta-button {
     background: var(--secondary-color);
-    color: var(--white-color);
+    color: var(--button-text-color); /* UPDATED: Use the new variable */
     padding: 12px 25px;
     text-decoration: none;
     font-weight: bold;
