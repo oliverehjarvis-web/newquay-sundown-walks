@@ -85,45 +85,51 @@
                 </div>
             </div>
 
-            <h3 class="gallery-title">A Few of Our Happy Clients</h3>
-            <div class="photo-gallery">
+            <!-- NEW: Gallery Toggle Button -->
+            <a id="toggleGalleryButton" href="#" class="cta-button">Show Photo Gallery</a>
+
+            <!-- NEW: Collapsible Gallery Wrapper -->
+            <div id="galleryWrapper" class="gallery-wrapper">
+                <h3 class="gallery-title">A Few of Our Happy Clients</h3>
+                <div class="photo-gallery">
                 
-                <div class="gallery-item">
-                    <img src="images/staffie-on-beach-running.webp" alt="Happy staffie running on a Newquay beach" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/two-dogs-sitting-for-photo.webp" alt="Two well-behaved dogs sitting in a field" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/dogs-playing-on-beach.webp" alt="Dogs playing together on the beach" loading="lazy">
-                </div>
+                    <div class="gallery-item">
+                        <img src="images/staffie-on-beach-running.webp" alt="Happy staffie running on a Newquay beach" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/two-dogs-sitting-for-photo.webp" alt="Two well-behaved dogs sitting in a field" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/dogs-playing-on-beach.webp" alt="Dogs playing together on the beach" loading="lazy">
+                    </div>
 
-                <div class="gallery-item">
-                    <img src="images/clumber-spaniel-lying-down.webp" alt="Clumber spaniel lying down in a field" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/collie-playing-with-toys-indoors.webp" alt="Collie playing with toys indoors" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/collie-running-in-snow.webp" alt="Collie running in the snow" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/dogs-playing-near-river.webp" alt="Dogs playing near a river" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/dogs-swimming-in-lake.webp" alt="Dogs swimming in a lake" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/staffie-in-stream.webp" alt="Staffie standing in a stream" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/two-dogs-in-field.webp" alt="Two dogs in a field" loading="lazy">
-                </div>
+                    <div class="gallery-item">
+                        <img src="images/clumber-spaniel-lying-down.webp" alt="Clumber spaniel lying down in a field" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/collie-playing-with-toys-indoors.webp" alt="Collie playing with toys indoors" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/collie-running-in-snow.webp" alt="Collie running in the snow" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/dogs-playing-near-river.webp" alt="Dogs playing near a river" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/dogs-swimming-in-lake.webp" alt="Dogs swimming in a lake" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/staffie-in-stream.webp" alt="Staffie standing in a stream" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/two-dogs-in-field.webp" alt="Two dogs in a field" loading="lazy">
+                    </div>
 
+                </div>
             </div>
         </section>
 
-<section id="reviews">
+        <section id="reviews">
             <h2>What Our Clients Say</h2>
             <p>(All 41 reviews from my previous company, Waggers Pack)</p>
             <p>I am honoured to have only ever recieved 5-star reviews</p>
@@ -423,6 +429,27 @@
         
         // Run it once on load just to set the initial (top) colors
         handleSunsetScroll();
+
+        // --- NEW: GALLERY TOGGLE SCRIPT ---
+        const galleryButton = document.getElementById('toggleGalleryButton');
+        const galleryWrapper = document.getElementById('galleryWrapper');
+
+        if (galleryButton && galleryWrapper) {
+            galleryButton.addEventListener('click', (e) => {
+                e.preventDefault(); // Stop page from jumping to top
+                
+                // Toggle the 'open' class
+                galleryWrapper.classList.toggle('open');
+                
+                // Update button text
+                if (galleryWrapper.classList.contains('open')) {
+                    galleryButton.textContent = 'Hide Photo Gallery';
+                } else {
+                    galleryButton.textContent = 'Show Photo Gallery';
+                }
+            });
+        }
+        
     });
     </script>
 
