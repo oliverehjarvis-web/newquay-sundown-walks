@@ -286,8 +286,16 @@ nav ul li a:hover {
     background: var(--light-color);
 }
 
-#reviews p {
+#reviews > h2 {
+    /* FIXED: Ensure headings are always readable */
+    color: var(--primary-color) !important;
+}
+
+#reviews > p {
     font-size: 1.1em;
+    /* FIXED: Ensure paragraph text is readable */
+    color: #2c3e50 !important;
+    opacity: 0.9;
 }
 
 /* Review Showcase Container */
@@ -331,7 +339,8 @@ nav ul li a:hover {
 .review-counter {
     font-size: 1.2em;
     font-weight: 600;
-    color: var(--primary-color);
+    /* FIXED: Always readable contrast */
+    color: var(--primary-color) !important;
 }
 
 /* Review Stage */
@@ -411,7 +420,9 @@ nav ul li a:hover {
     line-height: 1.7;
     flex-grow: 1;
     margin-bottom: 25px;
-    color: var(--text-color);
+    /* FIXED: Ensure text is always dark and readable */
+    color: #2c3e50 !important;
+    opacity: 1 !important;
 }
 
 .review-card-animated .review-footer {
@@ -421,16 +432,19 @@ nav ul li a:hover {
 
 .review-card-animated .review-author {
     font-weight: bold;
-    color: var(--primary-color);
+    /* FIXED: Always readable dark color */
+    color: var(--primary-color) !important;
     font-size: 1.2em;
     margin-bottom: 5px;
+    opacity: 1 !important;
 }
 
 .review-card-animated .review-source {
     font-style: italic;
     font-size: 0.95em;
-    color: var(--text-color);
-    opacity: 0.7;
+    /* FIXED: Always readable with good contrast */
+    color: #5a6c7d !important;
+    opacity: 0.85 !important;
 }
 
 /* Animation Classes */
