@@ -48,11 +48,14 @@ nav {
 .logo-container {
     display: flex;
     align-items: center;
+    background: transparent;
 }
 
 .logo-img {
     height: 60px;
     width: auto;
+    display: block;
+    object-fit: contain;
 }
 
 nav ul {
@@ -178,8 +181,11 @@ h4 {
 
 .service-image img {
     width: 100%;
+    height: auto;
+    display: block;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    object-fit: cover;
 }
 
 /* Trust Grid */
@@ -223,11 +229,13 @@ h4 {
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: var(--white-color);
 }
 
 .gallery-item img {
     width: 100%;
     height: 250px;
+    display: block;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
@@ -244,15 +252,47 @@ h4 {
 }
 
 .gallery-wrapper.open {
-    max-height: 5000px; /* Large enough to fit all content */
+    max-height: 5000px;
 }
 
-/* Reviews Section */
+/* Reviews Section - Horizontally Scrollable */
+#reviews {
+    position: relative;
+}
+
+#reviews > p {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
 .reviews-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
     gap: 2rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding: 2rem 1rem;
     margin-top: 2rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Scrollbar for Reviews */
+.reviews-container::-webkit-scrollbar {
+    height: 10px;
+}
+
+.reviews-container::-webkit-scrollbar-track {
+    background: var(--light-color);
+    border-radius: 10px;
+}
+
+.reviews-container::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 10px;
+}
+
+.reviews-container::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
 }
 
 .review-card {
@@ -261,6 +301,9 @@ h4 {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    min-width: 300px;
+    max-width: 350px;
+    flex-shrink: 0;
 }
 
 .review-card:hover {
@@ -274,6 +317,11 @@ h4 {
     margin-bottom: 1rem;
 }
 
+.review-card p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
 .review-author {
     font-weight: bold;
     margin-top: 1rem;
@@ -284,9 +332,14 @@ h4 {
     font-size: 0.9rem;
     color: var(--secondary-color);
     font-style: italic;
+    margin-top: 0.5rem;
 }
 
 /* Contact Section */
+#contact {
+    text-align: center;
+}
+
 .contact-details {
     text-align: center;
     font-size: 1.2rem;
@@ -301,7 +354,6 @@ h4 {
     color: var(--secondary-color);
     text-decoration: none;
     transition: color 0.3s ease;
-    /* MOBILE FIX: Allow long emails to break */
     word-break: break-word;
     overflow-wrap: break-word;
     display: inline-block;
@@ -325,17 +377,14 @@ footer {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-    /* MOBILE FIX: Hide navigation menu on mobile or make it hamburger */
     nav ul {
-        display: none; /* You can implement a hamburger menu later */
+        display: none;
     }
     
-    /* MOBILE FIX: Ensure logo container doesn't create white box */
     .logo-container {
         background: transparent;
     }
     
-    /* MOBILE FIX: Make header adapt better */
     header {
         padding: 0.5rem 0;
     }
@@ -346,6 +395,10 @@ footer {
     
     .logo-img {
         height: 50px;
+    }
+    
+    .hero {
+        min-height: 50vh;
     }
     
     .hero h1 {
@@ -370,21 +423,32 @@ footer {
     
     .trust-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
     .photo-gallery {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .gallery-item img {
+        height: 200px;
     }
     
     .reviews-container {
-        grid-template-columns: 1fr;
+        padding: 1rem 0.5rem;
+        gap: 1rem;
+    }
+    
+    .review-card {
+        min-width: 280px;
+        max-width: 300px;
     }
     
     section {
         padding: 2rem 1rem;
     }
     
-    /* MOBILE FIX: Ensure contact details fit properly */
     .contact-details {
         padding: 0 1rem;
     }
@@ -393,7 +457,6 @@ footer {
         word-break: break-word;
     }
     
-    /* MOBILE FIX: Force email to break on mobile */
     .contact-details a[href^="mailto:"] {
         font-size: 1rem;
         word-break: break-all;
@@ -414,8 +477,35 @@ footer {
         font-size: 0.9rem;
     }
     
-    /* MOBILE FIX: Even more aggressive email breaking on very small screens */
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .review-card {
+        min-width: 260px;
+        max-width: 280px;
+        padding: 1.2rem;
+    }
+    
     .contact-details a[href^="mailto:"] {
         font-size: 0.9rem;
     }
+    
+    .trust-item {
+        padding: 1.5rem;
+    }
+}
+
+/* Image Loading Fix - Ensure images always display properly */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Fallback for images that fail to load */
+img:not([src]),
+img[src=""],
+img[src*="undefined"] {
+    display: none;
 }
