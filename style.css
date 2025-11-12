@@ -360,7 +360,7 @@ nav ul li a:hover {
 .review-stage {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 20px;
     min-height: 400px;
 }
@@ -378,6 +378,7 @@ nav ul li a:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     flex-shrink: 0;
+    align-self: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -403,8 +404,8 @@ nav ul li a:hover {
 .review-card-container {
     flex: 1;
     position: relative;
-    overflow: hidden;
     min-height: 400px;
+    width: 100%;
 }
 
 .review-card-animated {
@@ -417,11 +418,10 @@ nav ul li a:hover {
     display: flex;
     flex-direction: column;
     min-height: 400px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
 .review-card-animated .stars {
@@ -512,7 +512,7 @@ nav ul li a:hover {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
@@ -521,19 +521,21 @@ nav ul li a:hover {
 }
 
 .slide-in-right {
-    animation: slideInRight 0.3s ease-out forwards;
+    animation: slideInRight 0.4s ease-out forwards;
 }
 
 .slide-in-left {
-    animation: slideInLeft 0.3s ease-out forwards;
+    animation: slideInLeft 0.4s ease-out forwards;
 }
 
 .slide-out-left {
-    animation: slideOutLeft 0.3s ease-out forwards;
+    animation: slideOutLeft 0.4s ease-out forwards;
+    position: absolute;
 }
 
 .slide-out-right {
-    animation: slideOutRight 0.3s ease-out forwards;
+    animation: slideOutRight 0.4s ease-out forwards;
+    position: absolute;
 }
 
 .fade-in {
@@ -676,6 +678,7 @@ footer {
     .review-showcase-header {
         flex-direction: column;
         text-align: center;
+        gap: 20px;
     }
     
     .random-review-btn {
@@ -685,30 +688,44 @@ footer {
     
     .review-stage {
         gap: 10px;
-        min-height: 420px;
+        min-height: 450px;
+        align-items: center;
     }
     
     .review-nav-btn {
         width: 45px;
         height: 45px;
         font-size: 1.8em;
+        flex-shrink: 0;
     }
     
     .review-card-container {
-        min-height: 420px;
+        min-height: 450px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        overflow: visible;
     }
     
     .review-card-animated {
         padding: 25px;
-        min-height: 420px;
+        min-height: 450px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .review-card-animated .review-text {
         font-size: 1em;
+        line-height: 1.6;
     }
     
     .review-card-animated .review-author {
         font-size: 1.1em;
+    }
+    
+    .review-card-animated .review-source {
+        font-size: 0.9em;
     }
     
     /* MOBILE FIX: Ensure contact email breaks properly */
@@ -750,24 +767,35 @@ footer {
     }
     
     /* MOBILE: Smaller review cards on tiny screens */
+    .review-stage {
+        min-height: 420px;
+    }
+    
     .review-nav-btn {
         width: 40px;
         height: 40px;
         font-size: 1.5em;
     }
     
+    .review-card-container {
+        min-height: 420px;
+    }
+    
     .review-card-animated {
         padding: 20px;
+        min-height: 420px;
         font-size: 0.95em;
-        min-height: 400px;
     }
     
     .review-card-animated .stars {
         font-size: 1.3em;
+        margin-bottom: 15px;
     }
     
     .review-card-animated .review-text {
         font-size: 0.95em;
+        line-height: 1.6;
+        margin-bottom: 20px;
     }
     
     .review-card-animated .review-author {
