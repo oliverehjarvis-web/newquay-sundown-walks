@@ -366,6 +366,9 @@ nav ul li a:hover {
     margin: 30px auto 0;
     font-weight: 500;
     font-size: 1.2em;
+    /* NEW: This stops the email from getting cut off */
+    word-break: break-word; 
+    overflow-wrap: break-word;
 }
 
 .contact-details p {
