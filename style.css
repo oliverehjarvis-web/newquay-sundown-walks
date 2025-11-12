@@ -325,7 +325,7 @@ nav ul li a:hover {
     font-size: 1.1em;
 }
 
-/* UPDATED: This rule is fixed */
+/* CORRECTED: This rule is now fixed from your provided file */
 .review-card .review-source {
     font-style: italic;
     font-size: 0.9em;
@@ -424,7 +424,7 @@ footer {
         margin-bottom: 10px;
     }
 
-nav ul {
+    nav ul {
         width: 100%;
         justify-content: center;
         padding: 10px 0;
