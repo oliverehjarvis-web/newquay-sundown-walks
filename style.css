@@ -309,9 +309,10 @@ nav ul li a:hover {
 .review-card .review-source {
     font-style: italic;
     font-size: 0.9em;
-    color: #555;
-    /* NEW: Ensure this text transitions too */
-    transition: color 0.8s ease-out;
+    color: var(--text-color); /* Use the main text variable */
+    opacity: 0.7; /* Make it slightly dimmer than main text */
+    /* Ensure opacity also transitions smoothly */
+    transition: color 0.8s ease-out, opacity 0.8s ease-out;
 }
 
 /* Style scrollbar for a better look */
