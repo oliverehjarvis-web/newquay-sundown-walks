@@ -283,7 +283,7 @@
                     <div class="review-source">Google Review</div>
                 </div>
 
-                <!-- All Facebook Reviews (now correctly inside the container) -->
+                <!-- All Facebook Reviews -->
                 <div class="review-card">
                     <div class="stars">★★★★★</div>
                     <p>We booked Oli to look after our GSD for the day whilst we were out. We were on holiday... Oli was fabulous from the moment he arrived; making a beeline for Wilson and immediately engaging him... Oli was attentive and really relaxed...</p>
@@ -303,9 +303,8 @@
                     <div class="review-source">Facebook Review</div>
                 </div>
 
-            </div> <!-- CORRECT: The container div now closes after ALL review cards -->
+            </div>
         </section>
-
 
         <section id="contact">
             <h2>Get in Touch</h2>
@@ -327,28 +326,26 @@
 
         // --- DEFINE YOUR DAY & NIGHT COLORS ---
 
-        // These are your original colors from style.css
         const dayColors = {
-            light: '#FEF6DF',     // --light-color (section bg)
-            text: '#000000',      // --text-color
-            white: '#ffffff',     // --white-color (header bg)
-            primary: '#526C83',   // --primary-color (headings)
-            secondary: '#E7A154',  // --secondary-color (links, accents)
+            light: '#FEF6DF',     // Section BG
+            text: '#000000',      // Main text
+            white: '#ffffff',     // Header/Card BG
+            primary: '#526C83',   // Headings
+            secondary: '#E7A154',  // Accents & Button BG
+            buttonText: '#ffffff', // NEW: Button Text
             heroStart: 'rgba(44, 62, 80, 0.7)',
             heroEnd: 'rgba(44, 62, 80, 0.7)'
         };
 
-        // --- UPDATED NIGHT COLORS ---
-        // I've made the text and heading colors brighter to fix
-        // the "muddy middle" contrast problem.
         const nightColors = {
-            light: '#0D1B2A',     // Very dark navy/charcoal for section backgrounds
-            text: '#FFFFFF',      // Brighter text (was #E0E0E0)
-            white: '#1A2F40',     // Darkened header/card background
-            primary: '#FFEBCD',   // Brighter heading (was #F5CBA7)
-            secondary: '#E0FFFF',  // Brighter accent (was #A8DADC)
-            heroStart: 'rgba(13, 27, 42, 0.9)', // Darker at night
-            heroEnd: 'rgba(44, 62, 80, 0.9)' // Slightly lighter end for depth
+            light: '#0D1B2A',     // Section BG
+            text: '#FFFFFF',      // Main text
+            white: '#1A2F40',     // Header/Card BG
+            primary: '#FFEBCD',   // Headings
+            secondary: '#E0FFFF',  // Accents & Button BG
+            buttonText: '#0D1B2A', // NEW: Button Text (dark to contrast light button)
+            heroStart: 'rgba(13, 27, 42, 0.9)',
+            heroEnd: 'rgba(44, 62, 80, 0.9)'
         };
 
         // --- THE SCRIPT ---
@@ -384,12 +381,10 @@
             const g = Math.round(c1.g + (c2.g - c1.g) * factor);
             const b = Math.round(c1.b + (c2.b - c1.b) * factor);
             
-            // Interpolate alpha channel if it exists (for RGBA)
             const a = (c1.a !== undefined && c2.a !== undefined) 
                         ? (c1.a + (c2.a - c1.a) * factor) 
                         : (c2.a !== undefined ? c2.a : (c1.a !== undefined ? c1.a : 1));
 
-            // Return RGBA if alpha is not 1
             if (a < 1 || (c1.a !== undefined && c1.a < 1) || (c2.a !== undefined && c2.a < 1)) {
                 return `rgba(${r}, ${g}, ${b}, ${a.toFixed(2)})`;
             }
@@ -399,31 +394,46 @@
 
         // The main function that runs on every scroll
         function handleSunsetScroll() {
-            // Calculate how far the user has scrolled as a percentage (0.0 to 1.0)
             const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
             let scrollFactor = window.scrollY / scrollTotal;
             
-            // Ensure factor is always between 0 and 1
             scrollFactor = Math.min(Math.max(scrollFactor, 0), 1);
 
-            // Calculate the new colors based on the scroll factor
-            const newLight = interpolateColor(dayColors.light, nightColors.light, scrollFactor);
-            const newText = interpolateColor(dayColors.text, nightColors.text, scrollFactor);
-            const newWhite = interpolateColor(dayColors.white, nightColors.white, scrollFactor);
-            const newPrimary = interpolateColor(dayColors.primary, nightColors.primary, scrollFactor);
-            const newSecondary = interpolateColor(dayColors.secondary, nightColors.secondary, scrollFactor);
-            const newHeroStart = interpolateColor(dayColors.heroStart, nightColors.heroStart, scrollFactor);
-            const newHeroEnd = interpolateColor(dayColors.heroEnd, nightColors.heroEnd, scrollFactor);
+            // --- NEW: DIFFERENT SCROLL SPEEDS ---
+            // Backgrounds transition normally (0% to 100%)
+            const bgScrollFactor = scrollFactor;
+            // Text transitions twice as fast (finishes at 50% scroll)
+            const textScrollFactor = Math.min(scrollFactor * 2, 1);
 
-            // Update the CSS variables on the :root (the <html> element)
+            // Calculate the new colors based on the scroll factors
+            
+            // Group 1: Backgrounds (Normal Speed)
+            const newLight = interpolateColor(dayColors.light, nightColors.light, bgScrollFactor);
+            const newWhite = interpolateColor(dayColors.white, nightColors.white, bgScrollFactor);
+            const newHeroStart = interpolateColor(dayColors.heroStart, nightColors.heroStart, bgScrollFactor);
+            const newHeroEnd = interpolateColor(dayColors.heroEnd, nightColors.heroEnd, bgScrollFactor);
+
+            // Group 2: Text & Accents (Fast Speed)
+            const newText = interpolateColor(dayColors.text, nightColors.text, textScrollFactor);
+            const newPrimary = interpolateColor(dayColors.primary, nightColors.primary, textScrollFactor);
+            const newSecondary = interpolateColor(dayColors.secondary, nightColors.secondary, textScrollFactor);
+            const newButtonText = interpolateColor(dayColors.buttonText, nightColors.buttonText, textScrollFactor);
+
+
+            // Update the CSS variables on the :root
             const root = document.documentElement;
+            
+            // Update Group 1
             root.style.setProperty('--light-color', newLight);
-            root.style.setProperty('--text-color', newText);
             root.style.setProperty('--white-color', newWhite);
-            root.style.setProperty('--primary-color', newPrimary);
-            root.style.setProperty('--secondary-color', newSecondary);
             root.style.setProperty('--hero-gradient-start', newHeroStart);
             root.style.setProperty('--hero-gradient-end', newHeroEnd);
+            
+            // Update Group 2
+            root.style.setProperty('--text-color', newText);
+            root.style.setProperty('--primary-color', newPrimary);
+            root.style.setProperty('--secondary-color', newSecondary);
+            root.style.setProperty('--button-text-color', newButtonText);
         }
 
         // Attach the function to the window's scroll event
@@ -432,7 +442,7 @@
         // Run it once on load just to set the initial (top) colors
         handleSunsetScroll();
 
-        // --- NEW: GALLERY TOGGLE SCRIPT ---
+        // --- GALLERY TOGGLE SCRIPT ---
         const galleryButton = document.getElementById('toggleGalleryButton');
         const galleryWrapper = document.getElementById('galleryWrapper');
 
