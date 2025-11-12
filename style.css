@@ -424,14 +424,16 @@ footer {
         margin-bottom: 10px;
     }
 
-    nav ul {
+nav ul {
         width: 100%;
         justify-content: center;
         padding: 10px 0;
-        background: #f9f9f9;
+        /* CHANGED: Use the variable so it transitions to dark blue at night */
+        background: var(--white-color); 
         margin-top: 0;
-        /* Allow wrapping on small screens */
         flex-wrap: wrap; 
+        /* NEW: Add a smooth transition to this mobile menu background too */
+        transition: background-color 0.8s ease-out;
     }
     
     nav ul li {
