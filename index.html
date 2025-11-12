@@ -304,18 +304,29 @@
             const newCard = createReviewCard(reviews[currentReviewIndex], currentReviewIndex);
             
             if (oldCard) {
+                // Make old card absolute so it doesn't affect layout during animation
+                oldCard.style.position = 'absolute';
+                oldCard.style.top = '0';
+                oldCard.style.left = '0';
+                oldCard.style.right = '0';
                 oldCard.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
+                
                 setTimeout(() => {
-                    reviewCardContainer.innerHTML = '';
+                    if (oldCard.parentNode) {
+                        oldCard.remove();
+                    }
                     newCard.classList.add(direction === 'next' ? 'slide-in-right' : 'slide-in-left');
                     reviewCardContainer.appendChild(newCard);
                     setTimeout(() => {
                         newCard.classList.remove('slide-in-right', 'slide-in-left');
-                    }, 50);
-                }, 300);
+                    }, 400);
+                }, 400);
             } else {
                 newCard.classList.add('fade-in');
                 reviewCardContainer.appendChild(newCard);
+                setTimeout(() => {
+                    newCard.classList.remove('fade-in');
+                }, 500);
             }
             
             currentReviewNum.textContent = currentReviewIndex + 1;
