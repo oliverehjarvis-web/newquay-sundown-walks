@@ -85,10 +85,8 @@
                 </div>
             </div>
 
-            <!-- NEW: Gallery Toggle Button -->
             <a id="toggleGalleryButton" href="#" class="cta-button">Show Photo Gallery</a>
 
-            <!-- NEW: Collapsible Gallery Wrapper -->
             <div id="galleryWrapper" class="gallery-wrapper">
                 <h3 class="gallery-title">A Few of Our Happy Clients</h3>
                 <div class="photo-gallery">
@@ -134,25 +132,19 @@
             <p>(All 41 reviews from my previous company, Waggers Pack)</p>
             <p>I am honoured to have only ever received 5-star reviews</p>
             
-            <!-- NEW: Interactive Review Showcase -->
+            <!-- Redesigned Review Showcase -->
             <div class="review-showcase">
-                <div class="review-showcase-header">
+                <div class="review-controls-top">
                     <button id="randomReviewBtn" class="random-review-btn">🎲 Random Review</button>
                     <div class="review-counter">
-                        <span id="currentReviewNum">1</span> of <span id="totalReviews">41</span>
+                        <span id="currentReviewNum">1</span> of <span id="totalReviews">28</span>
                     </div>
                 </div>
                 
-                <div class="review-stage">
-                    <button class="review-nav-btn prev-btn" id="prevReview">
-                        <span>‹</span>
-                    </button>
-                    
-                    <div class="review-card-container" id="reviewCardContainer">
-                    
-                    <button class="review-nav-btn next-btn" id="nextReview">
-                        <span>›</span>
-                    </button>
+                <div class="review-display">
+                    <button class="review-nav-btn prev-btn" id="prevReview" aria-label="Previous review">‹</button>
+                    <div class="review-card-wrapper" id="reviewCardContainer"></div>
+                    <button class="review-nav-btn next-btn" id="nextReview" aria-label="Next review">›</button>
                 </div>
                 
                 <div class="review-dots" id="reviewDots"></div>
@@ -219,18 +211,15 @@
         const nextBtn = document.getElementById('nextReview');
         const randomBtn = document.getElementById('randomReviewBtn');
 
-        // Set total reviews
         totalReviewsEl.textContent = reviews.length;
 
-        // Create star HTML
         function createStars(count) {
             return '★'.repeat(count);
         }
 
-        // Create review card HTML
-        function createReviewCard(review, index) {
+        function createReviewCard(review) {
             const card = document.createElement('div');
-            card.className = 'review-card-animated';
+            card.className = 'review-card';
             card.innerHTML = `
                 <div class="stars">${createStars(review.stars)}</div>
                 ${review.text ? `<p class="review-text">${review.text}</p>` : '<p class="review-text"><em>5-star review</em></p>'}
@@ -242,25 +231,24 @@
             return card;
         }
 
-        // Create navigation dots
         function createDots() {
             reviewDots.innerHTML = '';
-            // Show dots for first 10, then "...", then last few
             const maxDots = 10;
             
             if (reviews.length <= maxDots) {
                 reviews.forEach((_, index) => {
-                    const dot = document.createElement('span');
+                    const dot = document.createElement('button');
                     dot.className = 'review-dot';
+                    dot.setAttribute('aria-label', `Go to review ${index + 1}`);
                     if (index === currentReviewIndex) dot.classList.add('active');
                     dot.addEventListener('click', () => goToReview(index));
                     reviewDots.appendChild(dot);
                 });
             } else {
-                // Show first 5, ellipsis, current (if in middle), ellipsis, last 5
                 for (let i = 0; i < 5; i++) {
-                    const dot = document.createElement('span');
+                    const dot = document.createElement('button');
                     dot.className = 'review-dot';
+                    dot.setAttribute('aria-label', `Go to review ${i + 1}`);
                     if (i === currentReviewIndex) dot.classList.add('active');
                     dot.addEventListener('click', () => goToReview(i));
                     reviewDots.appendChild(dot);
@@ -272,9 +260,9 @@
                     ellipsis.textContent = '...';
                     reviewDots.appendChild(ellipsis);
                     
-                    const dot = document.createElement('span');
+                    const dot = document.createElement('button');
                     dot.className = 'review-dot active';
-                    dot.addEventListener('click', () => goToReview(currentReviewIndex));
+                    dot.setAttribute('aria-label', `Current review ${currentReviewIndex + 1}`);
                     reviewDots.appendChild(dot);
                     
                     const ellipsis2 = document.createElement('span');
@@ -289,8 +277,9 @@
                 }
                 
                 for (let i = reviews.length - 5; i < reviews.length; i++) {
-                    const dot = document.createElement('span');
+                    const dot = document.createElement('button');
                     dot.className = 'review-dot';
+                    dot.setAttribute('aria-label', `Go to review ${i + 1}`);
                     if (i === currentReviewIndex) dot.classList.add('active');
                     dot.addEventListener('click', () => goToReview(i));
                     reviewDots.appendChild(dot);
@@ -298,13 +287,11 @@
             }
         }
 
-        // Display current review with animation
         function displayReview(direction = 'next') {
-            const oldCard = reviewCardContainer.querySelector('.review-card-animated');
-            const newCard = createReviewCard(reviews[currentReviewIndex], currentReviewIndex);
+            const oldCard = reviewCardContainer.querySelector('.review-card');
+            const newCard = createReviewCard(reviews[currentReviewIndex]);
             
             if (oldCard) {
-                // Make old card absolute so it doesn't affect layout during animation
                 oldCard.style.position = 'absolute';
                 oldCard.style.top = '0';
                 oldCard.style.left = '0';
@@ -312,9 +299,7 @@
                 oldCard.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
                 
                 setTimeout(() => {
-                    if (oldCard.parentNode) {
-                        oldCard.remove();
-                    }
+                    if (oldCard.parentNode) oldCard.remove();
                     newCard.classList.add(direction === 'next' ? 'slide-in-right' : 'slide-in-left');
                     reviewCardContainer.appendChild(newCard);
                     setTimeout(() => {
@@ -324,16 +309,13 @@
             } else {
                 newCard.classList.add('fade-in');
                 reviewCardContainer.appendChild(newCard);
-                setTimeout(() => {
-                    newCard.classList.remove('fade-in');
-                }, 500);
+                setTimeout(() => newCard.classList.remove('fade-in'), 500);
             }
             
             currentReviewNum.textContent = currentReviewIndex + 1;
             createDots();
         }
 
-        // Navigation functions
         function nextReview() {
             currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
             displayReview('next');
@@ -361,22 +343,16 @@
             displayReview(direction);
         }
 
-        // Event listeners
-        nextBtn.addEventListener('click', nextReview);
         prevBtn.addEventListener('click', prevReview);
+        nextBtn.addEventListener('click', nextReview);
         randomBtn.addEventListener('click', randomReview);
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') prevReview();
             if (e.key === 'ArrowRight') nextReview();
-            if (e.key === ' ') {
-                e.preventDefault();
-                randomReview();
-            }
+            if (e.key === ' ') { e.preventDefault(); randomReview(); }
         });
 
-        // Touch swipe support
         let touchStartX = 0;
         let touchEndX = 0;
         
@@ -386,47 +362,36 @@
         
         reviewCardContainer.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
             if (touchEndX < touchStartX - 50) nextReview();
             if (touchEndX > touchStartX + 50) prevReview();
-        }
+        });
 
-        // Initialize
         displayReview();
 
-        // Auto-advance (optional - commented out, but you can enable it)
-        // setInterval(nextReview, 5000);
-
-        // --- SUNSET SCROLL EFFECT (Original Code) ---
+        // --- SUNSET SCROLL EFFECT ---
 
         const dayColors = {
-            light: '#FEF6DF',     // Section BG
-            text: '#000000',      // Main text
-            white: '#ffffff',     // Header/Card BG
-            primary: '#526C83',   // Headings
-            secondary: '#E7A154',  // Accents & Button BG
-            buttonText: '#ffffff', // NEW: Button Text
+            light: '#FEF6DF',
+            text: '#000000',
+            white: '#ffffff',
+            primary: '#526C83',
+            secondary: '#E7A154',
+            buttonText: '#ffffff',
             heroStart: 'rgba(44, 62, 80, 0.7)',
             heroEnd: 'rgba(44, 62, 80, 0.7)'
         };
 
         const nightColors = {
-            light: '#0D1B2A',     // Section BG
-            text: '#FFFFFF',      // Main text
-            white: '#1A2F40',     // Header/Card BG
-            primary: '#FFEBCD',   // Headings
-            secondary: '#E0FFFF',  // Accents & Button BG
-            buttonText: '#0D1B2A', // NEW: Button Text (dark to contrast light button)
+            light: '#0D1B2A',
+            text: '#FFFFFF',
+            white: '#1A2F40',
+            primary: '#FFEBCD',
+            secondary: '#E0FFFF',
+            buttonText: '#0D1B2A',
             heroStart: 'rgba(13, 27, 42, 0.9)',
             heroEnd: 'rgba(44, 62, 80, 0.9)'
         };
 
-        // --- THE SCRIPT ---
-
-        // Helper function to parse hex or rgb color
         const colorToRgb = (color) => {
             if (color.startsWith('rgba')) {
                 const parts = color.match(/[\d.]+/g);
@@ -438,9 +403,7 @@
             }
             
             let hex = color;
-            if (hex.length === 4) { // #RGB
-                hex = '#' + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
-            }
+            if (hex.length === 4) hex = '#' + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
             
             const r = parseInt(hex.substring(1, 3), 16);
             const g = parseInt(hex.substring(3, 5), 16);
@@ -448,7 +411,6 @@
             return { r, g, b, a: 1 };
         };
 
-        // Helper function to interpolate (find the in-between) two colors
         function interpolateColor(color1, color2, factor) {
             const c1 = colorToRgb(color1);
             const c2 = colorToRgb(color2);
@@ -468,73 +430,46 @@
             return `rgb(${r}, ${g}, ${b})`;
         }
 
-        // The main function that runs on every scroll
         function handleSunsetScroll() {
             const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
             let scrollFactor = window.scrollY / scrollTotal;
-            
             scrollFactor = Math.min(Math.max(scrollFactor, 0), 1);
 
-            // --- NEW: DIFFERENT SCROLL SPEEDS ---
-            // Backgrounds transition normally (0% to 100%)
             const bgScrollFactor = scrollFactor;
-            // Text transitions twice as fast (finishes at 50% scroll)
             const textScrollFactor = Math.min(scrollFactor * 2, 1);
 
-            // Calculate the new colors based on the scroll factors
-            
-            // Group 1: Backgrounds (Normal Speed)
             const newLight = interpolateColor(dayColors.light, nightColors.light, bgScrollFactor);
             const newWhite = interpolateColor(dayColors.white, nightColors.white, bgScrollFactor);
             const newHeroStart = interpolateColor(dayColors.heroStart, nightColors.heroStart, bgScrollFactor);
             const newHeroEnd = interpolateColor(dayColors.heroEnd, nightColors.heroEnd, bgScrollFactor);
-
-            // Group 2: Text & Accents (Fast Speed)
             const newText = interpolateColor(dayColors.text, nightColors.text, textScrollFactor);
             const newPrimary = interpolateColor(dayColors.primary, nightColors.primary, textScrollFactor);
             const newSecondary = interpolateColor(dayColors.secondary, nightColors.secondary, textScrollFactor);
             const newButtonText = interpolateColor(dayColors.buttonText, nightColors.buttonText, textScrollFactor);
 
-
-            // Update the CSS variables on the :root
             const root = document.documentElement;
-            
-            // Update Group 1
             root.style.setProperty('--light-color', newLight);
             root.style.setProperty('--white-color', newWhite);
             root.style.setProperty('--hero-gradient-start', newHeroStart);
             root.style.setProperty('--hero-gradient-end', newHeroEnd);
-            
-            // Update Group 2
             root.style.setProperty('--text-color', newText);
             root.style.setProperty('--primary-color', newPrimary);
             root.style.setProperty('--secondary-color', newSecondary);
             root.style.setProperty('--button-text-color', newButtonText);
         }
 
-        // Attach the function to the window's scroll event
         window.addEventListener('scroll', handleSunsetScroll);
-        
-        // Run it once on load just to set the initial (top) colors
         handleSunsetScroll();
 
-        // --- GALLERY TOGGLE SCRIPT ---
+        // --- GALLERY TOGGLE ---
         const galleryButton = document.getElementById('toggleGalleryButton');
         const galleryWrapper = document.getElementById('galleryWrapper');
 
         if (galleryButton && galleryWrapper) {
             galleryButton.addEventListener('click', (e) => {
-                e.preventDefault(); // Stop page from jumping to top
-                
-                // Toggle the 'open' class
+                e.preventDefault();
                 galleryWrapper.classList.toggle('open');
-                
-                // Update button text
-                if (galleryWrapper.classList.contains('open')) {
-                    galleryButton.textContent = 'Hide Photo Gallery';
-                } else {
-                    galleryButton.textContent = 'Show Photo Gallery';
-                }
+                galleryButton.textContent = galleryWrapper.classList.contains('open') ? 'Hide Photo Gallery' : 'Show Photo Gallery';
             });
         }
         
