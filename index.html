@@ -45,10 +45,10 @@
                     <h3>The Sundown Walk (5:00 PM - 8:00 PM)</h3>
                     <p>This is our specialty. We provide a dedicated 60-minute walk to ensure your dog is happy, comfortable, and ready for bed. It's the perfect solution for owners who are working late, out for the evening, or have a high-energy dog needing a final run-out.</p>
                     <ul>
-                        <li> 60-Minute Safe Walks</li>
-                        <li> Water Refresh & Treat (with your permission)</li>
-                        <li> A text/photo update for your peace of mind</li>
-                        <li> Ideal for shift workers, social evenings, or tired owners</li>
+                        <li>✓ 60-Minute Safe Walks</li>
+                        <li>✓ Water Refresh & Treat (with your permission)</li>
+                        <li>✓ A text/photo update for your peace of mind</li>
+                        <li>✓ Ideal for shift workers, social evenings, or tired owners</li>
                     </ul>
                 </div>
                 <div class="service-image">
@@ -132,8 +132,23 @@
         <section id="reviews">
             <h2>What Our Clients Say</h2>
             <p>(All 41 reviews from my previous company, Waggers Pack)</p>
-            <p>I am honoured to have only ever recieved 5-star reviews</p>
-            <div class="reviews-container">
+            <p>I am honoured to have only ever received 5-star reviews</p>
+            
+            <!-- NEW: Interactive Review Showcase -->
+            <div class="review-showcase">
+                <div class="review-showcase-header">
+                    <button id="randomReviewBtn" class="random-review-btn">🎲 Random Review</button>
+                    <div class="review-counter">
+                        <span id="currentReviewNum">1</span> of <span id="totalReviews">41</span>
+                    </div>
+                </div>
+                
+                <div class="review-stage">
+                    <button class="review-nav-btn prev-btn" id="prevReview">
+                        <span>‹</span>
+                    </button>
+                    
+                    <div class="review-card-container" id="reviewCardContainer">
                 
                 <!-- All Google Reviews -->
                 <div class="review-card">
@@ -301,8 +316,14 @@
                     <p>Waggers pack have been nothing but brilliant. I can tell my dog absolutely loves his adventures... Oli and the team have been so accommodating with last minute bookings... I know he's in good safe hands...</p>
                     <div class="review-author">Skye Wheeler</div>
                     <div class="review-source">Facebook Review</div>
+                    </div>
+                    
+                    <button class="review-nav-btn next-btn" id="nextReview">
+                        <span>›</span>
+                    </button>
                 </div>
-
+                
+                <div class="review-dots" id="reviewDots"></div>
             </div>
         </section>
 
@@ -324,7 +345,219 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        // --- DEFINE YOUR DAY & NIGHT COLORS ---
+        // --- REVIEW DATA ---
+        const reviews = [
+            { stars: 5, text: "We recently visited Cornwall on holiday and only realised last minute that we couldn't bring our dog Bertie along for lunch... Oliver was really quick at responding and was very flexible... He kept us updated...", author: "Anna Lomas", source: "Google Review" },
+            { stars: 5, text: "I would have no hesitation in recommending Oli and Waggers Pack. Oli has provided doggie daycare and doggie sitting services for us multiple times over 2 holidays in Cornwall...", author: "Mary Lowery", source: "Google Review" },
+            { stars: 5, text: "Oli is brilliant at his job and my dog loves him. He is really flexible and will walk my dog at short notice. They go on lots of different walks and my dog always comes back happy and tired. Would highly recommend.", author: "Sue Lake", source: "Google Review" },
+            { stars: 5, text: "Oli looked after Dotty our cocker spaniel today... Dotty is quite shy but Oli was brilliant with her and gave us text updates and photos during the day. Dotty had a fantastic day...", author: "Stephen Wheeler", source: "Google Review" },
+            { stars: 5, text: "We recently visited Cornwall... We had a five night visit but the 1st night was a no dogs allowed... [Oli] was at our B&B waiting... took him for 2 walks and kept us updated... Can't recommend enough.", author: "Marcus Millichope", source: "Google Review" },
+            { stars: 5, text: "My dog Daisy really likes Oli and loves the long and varied walks. The dogs seem to have a really sociable, fun time and we love seeing the photos... Great service, highly recommended.", author: "Mike Cunliffe", source: "Google Review" },
+            { stars: 5, text: "We had a great experience with Wadebridge Waggers our dog was taken care off for us... Our sitter arrived on time as requested and was very engaging and caring...", author: "Steve Holland", source: "Google Review" },
+            { stars: 5, text: "Oli has been a life saver... The dogs love their walks with Oli who is always very professional and turns up as he says he will. I am very confident my dogs are in great hands. He also looks after my cat briliantly.", author: "jo coker", source: "Google Review" },
+            { stars: 5, text: "Oli is brilliant and just what your looking for. Our Holly goes to him for Doggy Day Care, and she cant wait. He really goes the extra mile, and will continuously recommend him.", author: "Jasmin Jones", source: "Google Review" },
+            { stars: 5, text: "Oli is great with Poppy and she loves being out with all of the the other dogs. He is very efficient, well organised and flexible. Really like that he uploads photos... Would highly recommend.", author: "Jack Shepherd", source: "Google Review" },
+            { stars: 5, text: "Olly is outstanding and offers the support, walks and collaboration that works for us and our wonderful dogs. I can recommend him and Waggers Pack without hesitation.", author: "Matthew Stone", source: "Google Review" },
+            { stars: 5, text: "Been walking our dog Rupert for over 2 years now. Can definitely say I feel my dog is well looked after and especially enjoy the app updates! I can highly recommend 👍", author: "Radram", source: "Google Review" },
+            { stars: 5, text: "Meg absolutely loves her day with Oli and I always have a peaceful evening as she snoozes... Oli always fits in with my timetable and is very reliable.", author: "Janet Elston", source: "Google Review" },
+            { stars: 5, text: "So pleased we found Ollie for the one night of our holiday that wasn't dog friendly, Riley absolutely loved Sophie and we could tell he had a great time ☺️ absolutely fabulous service...", author: "Janey willis", source: "Google Review" },
+            { stars: 5, text: "Sophie and Oli have been great and we feel happy knowing our pup is happy.", author: "Kelly Norris-Hughes", source: "Google Review" },
+            { stars: 5, text: "So pleased to have found Ollie and Waggers. Friendly, professional, eco friendly and wonderful with our 9mth old pup.", author: "Tanya Atkins", source: "Google Review" },
+            { stars: 5, text: "Oli and Sophie were so easy to deal with and incredibly helpful. Really professional and flexible - highly recommend them!!", author: "Vicky Emery", source: "Google Review" },
+            { stars: 5, text: "I don't know where we'd be without Oli and Wadebridge Waggers! His highly reliable, flexible & personalised service has meant I can now go to work!!", author: "Marcus Warr", source: "Google Review" },
+            { stars: 5, text: "Excellent dog sitting service while we were at Rick Stein's. Well worth it !", author: "Philip Bickle", source: "Google Review" },
+            { stars: 5, text: "Great dog walker. Goes over and above! And my dog loves him.", author: "Liam", source: "Google Review" },
+            { stars: 5, text: "I withdraw my previous review as there appears to have been a total mix up which was nobody's fault.", author: "Nicola Hoskin", source: "Google Review" },
+            { stars: 5, text: "", author: "Megan Crooks", source: "Google Review" },
+            { stars: 5, text: "", author: "Dan Bonney", source: "Google Review" },
+            { stars: 5, text: "", author: "Stephen Crowther", source: "Google Review" },
+            { stars: 5, text: "", author: "Mark 'NCW' Graham", source: "Google Review" },
+            { stars: 5, text: "We booked Oli to look after our GSD for the day whilst we were out. We were on holiday... Oli was fabulous from the moment he arrived; making a beeline for Wilson and immediately engaging him... Oli was attentive and really relaxed...", author: "Charlotte Wilson", source: "Facebook Review" },
+            { stars: 5, text: "Oli and the team treat my mad staffy like one of the family. Their communication is awesome and they stick to our arrangements like glue. Could not recommend them highly enough...", author: "Vivian Swif", source: "Facebook Review" },
+            { stars: 5, text: "Waggers pack have been nothing but brilliant. I can tell my dog absolutely loves his adventures... Oli and the team have been so accommodating with last minute bookings... I know he's in good safe hands...", author: "Skye Wheeler", source: "Facebook Review" }
+        ];
+
+        // --- REVIEW SHOWCASE FUNCTIONALITY ---
+        let currentReviewIndex = 0;
+        const reviewCardContainer = document.getElementById('reviewCardContainer');
+        const currentReviewNum = document.getElementById('currentReviewNum');
+        const totalReviewsEl = document.getElementById('totalReviews');
+        const reviewDots = document.getElementById('reviewDots');
+        const prevBtn = document.getElementById('prevReview');
+        const nextBtn = document.getElementById('nextReview');
+        const randomBtn = document.getElementById('randomReviewBtn');
+
+        // Set total reviews
+        totalReviewsEl.textContent = reviews.length;
+
+        // Create star HTML
+        function createStars(count) {
+            return '★'.repeat(count);
+        }
+
+        // Create review card HTML
+        function createReviewCard(review, index) {
+            const card = document.createElement('div');
+            card.className = 'review-card-animated';
+            card.innerHTML = `
+                <div class="stars">${createStars(review.stars)}</div>
+                ${review.text ? `<p class="review-text">${review.text}</p>` : '<p class="review-text"><em>5-star review</em></p>'}
+                <div class="review-footer">
+                    <div class="review-author">${review.author}</div>
+                    <div class="review-source">${review.source}</div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Create navigation dots
+        function createDots() {
+            reviewDots.innerHTML = '';
+            // Show dots for first 10, then "...", then last few
+            const maxDots = 10;
+            
+            if (reviews.length <= maxDots) {
+                reviews.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.className = 'review-dot';
+                    if (index === currentReviewIndex) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToReview(index));
+                    reviewDots.appendChild(dot);
+                });
+            } else {
+                // Show first 5, ellipsis, current (if in middle), ellipsis, last 5
+                for (let i = 0; i < 5; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = 'review-dot';
+                    if (i === currentReviewIndex) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToReview(i));
+                    reviewDots.appendChild(dot);
+                }
+                
+                if (currentReviewIndex >= 5 && currentReviewIndex < reviews.length - 5) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.className = 'review-dot-ellipsis';
+                    ellipsis.textContent = '...';
+                    reviewDots.appendChild(ellipsis);
+                    
+                    const dot = document.createElement('span');
+                    dot.className = 'review-dot active';
+                    dot.addEventListener('click', () => goToReview(currentReviewIndex));
+                    reviewDots.appendChild(dot);
+                    
+                    const ellipsis2 = document.createElement('span');
+                    ellipsis2.className = 'review-dot-ellipsis';
+                    ellipsis2.textContent = '...';
+                    reviewDots.appendChild(ellipsis2);
+                } else {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.className = 'review-dot-ellipsis';
+                    ellipsis.textContent = '...';
+                    reviewDots.appendChild(ellipsis);
+                }
+                
+                for (let i = reviews.length - 5; i < reviews.length; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = 'review-dot';
+                    if (i === currentReviewIndex) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToReview(i));
+                    reviewDots.appendChild(dot);
+                }
+            }
+        }
+
+        // Display current review with animation
+        function displayReview(direction = 'next') {
+            const oldCard = reviewCardContainer.querySelector('.review-card-animated');
+            const newCard = createReviewCard(reviews[currentReviewIndex], currentReviewIndex);
+            
+            if (oldCard) {
+                oldCard.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
+                setTimeout(() => {
+                    reviewCardContainer.innerHTML = '';
+                    newCard.classList.add(direction === 'next' ? 'slide-in-right' : 'slide-in-left');
+                    reviewCardContainer.appendChild(newCard);
+                    setTimeout(() => {
+                        newCard.classList.remove('slide-in-right', 'slide-in-left');
+                    }, 50);
+                }, 300);
+            } else {
+                newCard.classList.add('fade-in');
+                reviewCardContainer.appendChild(newCard);
+            }
+            
+            currentReviewNum.textContent = currentReviewIndex + 1;
+            createDots();
+        }
+
+        // Navigation functions
+        function nextReview() {
+            currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+            displayReview('next');
+        }
+
+        function prevReview() {
+            currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
+            displayReview('prev');
+        }
+
+        function goToReview(index) {
+            const direction = index > currentReviewIndex ? 'next' : 'prev';
+            currentReviewIndex = index;
+            displayReview(direction);
+        }
+
+        function randomReview() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * reviews.length);
+            } while (newIndex === currentReviewIndex && reviews.length > 1);
+            
+            const direction = Math.random() > 0.5 ? 'next' : 'prev';
+            currentReviewIndex = newIndex;
+            displayReview(direction);
+        }
+
+        // Event listeners
+        nextBtn.addEventListener('click', nextReview);
+        prevBtn.addEventListener('click', prevReview);
+        randomBtn.addEventListener('click', randomReview);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevReview();
+            if (e.key === 'ArrowRight') nextReview();
+            if (e.key === ' ') {
+                e.preventDefault();
+                randomReview();
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        reviewCardContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        reviewCardContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextReview();
+            if (touchEndX > touchStartX + 50) prevReview();
+        }
+
+        // Initialize
+        displayReview();
+
+        // Auto-advance (optional - commented out, but you can enable it)
+        // setInterval(nextReview, 5000);
+
+        // --- SUNSET SCROLL EFFECT (Original Code) ---
 
         const dayColors = {
             light: '#FEF6DF',     // Section BG
