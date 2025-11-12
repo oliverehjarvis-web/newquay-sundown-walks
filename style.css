@@ -284,6 +284,8 @@ nav ul li a:hover {
 /* ======== REVIEWS SECTION - INTERACTIVE SHOWCASE ======== */
 #reviews {
     background: var(--light-color);
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 #reviews > h2 {
@@ -291,6 +293,7 @@ nav ul li a:hover {
     color: #FEF6DF !important;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     font-size: 2.5em;
+    margin-bottom: 15px;
 }
 
 #reviews > p {
@@ -299,19 +302,21 @@ nav ul li a:hover {
     color: #ffffff !important;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     opacity: 0.95;
+    margin-bottom: 10px;
 }
 
 /* Review Showcase Container */
 .review-showcase {
     max-width: 800px;
     margin: 40px auto 0;
+    padding: 0 20px;
 }
 
 .review-showcase-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     flex-wrap: wrap;
     gap: 15px;
 }
@@ -357,7 +362,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     gap: 20px;
-    min-height: 350px;
+    min-height: 400px;
 }
 
 .review-nav-btn {
@@ -399,7 +404,7 @@ nav ul li a:hover {
     flex: 1;
     position: relative;
     overflow: hidden;
-    min-height: 350px;
+    min-height: 400px;
 }
 
 .review-card-animated {
@@ -411,7 +416,7 @@ nav ul li a:hover {
     text-align: left;
     display: flex;
     flex-direction: column;
-    min-height: 350px;
+    min-height: 400px;
     position: absolute;
     top: 0;
     left: 0;
@@ -424,6 +429,7 @@ nav ul li a:hover {
     color: #E7A154 !important;
     font-size: 1.5em;
     margin-bottom: 20px;
+    flex-shrink: 0;
 }
 
 .review-card-animated .review-text {
@@ -439,6 +445,7 @@ nav ul li a:hover {
     /* FIXED: Light border that works on white */
     border-top: 2px solid #e8e8e8 !important;
     padding-top: 20px;
+    flex-shrink: 0;
 }
 
 .review-card-animated .review-author {
@@ -446,7 +453,7 @@ nav ul li a:hover {
     /* FIXED: Always readable on white background */
     color: #526C83 !important;
     font-size: 1.2em;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .review-card-animated .review-source {
@@ -454,6 +461,7 @@ nav ul li a:hover {
     font-size: 0.95em;
     /* FIXED: Subtle but readable on white */
     color: #6c757d !important;
+    margin-top: 5px;
 }
 
 /* Animation Classes */
@@ -537,7 +545,8 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 30px;
+    margin-top: 40px;
+    padding: 10px;
     flex-wrap: wrap;
 }
 
@@ -676,7 +685,7 @@ footer {
     
     .review-stage {
         gap: 10px;
-        min-height: 400px;
+        min-height: 420px;
     }
     
     .review-nav-btn {
@@ -686,12 +695,12 @@ footer {
     }
     
     .review-card-container {
-        min-height: 400px;
+        min-height: 420px;
     }
     
     .review-card-animated {
         padding: 25px;
-        min-height: 400px;
+        min-height: 420px;
     }
     
     .review-card-animated .review-text {
@@ -750,10 +759,23 @@ footer {
     .review-card-animated {
         padding: 20px;
         font-size: 0.95em;
+        min-height: 400px;
     }
     
     .review-card-animated .stars {
         font-size: 1.3em;
+    }
+    
+    .review-card-animated .review-text {
+        font-size: 0.95em;
+    }
+    
+    .review-card-animated .review-author {
+        font-size: 1em;
+    }
+    
+    .review-card-animated .review-source {
+        font-size: 0.85em;
     }
 }
 
