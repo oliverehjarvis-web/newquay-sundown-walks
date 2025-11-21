@@ -26,7 +26,6 @@ body {
     line-height: 1.6;
     background-color: var(--white-color); 
     position: relative;
-    /* Ensure the body fills height for scroll calc */
     min-height: 100vh;
 }
 
@@ -57,27 +56,36 @@ img {
     border-radius: 8px;
 }
 
-/* ======== TORCH LAYER (NEW) ======== */
+/* ======== TORCH LAYER ======== */
 #torch-layer {
     position: fixed;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    z-index: 90; /* Below header/nav (100) but above content */
-    pointer-events: none; /* Crucial: Let clicks pass through */
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 90; 
+    pointer-events: none; 
     
-    /* The magic: A transparent circle in the middle, fading to dark */
+    /* Default (Mobile): Smaller torch so they still see the darkness */
     background: radial-gradient(
-        circle 500px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+        circle 250px at var(--cursor-x, 50%) var(--cursor-y, 50%),
         transparent 0%,
-        rgba(0, 0, 0, 0.1) 40%, /* Soft edge */
-        rgba(0, 0, 0, 0.92) 100% /* Dark surroundings */
+        rgba(0, 0, 0, 0.1) 40%, 
+        rgba(0, 0, 0, 0.92) 100% 
     );
     
-    opacity: 0; /* Starts hidden, controlled by JS scroll */
+    opacity: 0; 
     transition: opacity 0.5s ease;
-    mix-blend-mode: multiply; /* Helps it darken the page naturally */
+    mix-blend-mode: multiply; 
+}
+
+/* Desktop: Huge torch */
+@media (min-width: 768px) {
+    #torch-layer {
+        background: radial-gradient(
+            circle 500px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 40%, 
+            rgba(0, 0, 0, 0.92) 100% 
+        );
+    }
 }
 
 /* ======== STARRY NIGHT CANVAS ======== */
@@ -526,26 +534,37 @@ nav ul li a:hover {
     z-index: 10;
 }
 
-/* Custom Leaflet Styles */
+/* Custom Leaflet Styles - UPDATED ICONS */
 .leaflet-div-icon {
     background: transparent;
     border: none;
 }
 
 .pulsing-hotspot {
-    width: 24px;
-    height: 24px;
-    background-color: var(--secondary-color); /* Your Sunset Orange */
+    width: 30px; /* Larger size */
+    height: 30px; /* Larger size */
+    background-color: var(--secondary-color);
     border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border: 3px solid white; /* Thicker border */
+    /* Add a strong, glowing shadow using the orange color */
+    box-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--secondary-color);
     animation: pulse 2s infinite ease-in-out;
     cursor: pointer;
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.6); opacity: 0.7; }
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+        /* Stronger glow at rest */
+        box-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--secondary-color);
+    }
+    50% {
+        transform: scale(1.8); /* Larger pulse */
+        opacity: 0.8;
+        /* Even stronger, more diffused glow at peak pulse */
+        box-shadow: 0 0 30px var(--secondary-color), 0 0 50px var(--secondary-color);
+    }
 }
 
 /* Popup Styles */
@@ -1295,53 +1314,24 @@ footer {
 }
 
 /* ======== READABILITY FIXES ======== */
-
-/* Add a shadow to all headings and paragraphs to separate them from the background */
 h1, h2, h3, h4, p {
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* Subtle shadow for day */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); 
 }
 
-/* Make the shadow stronger for main section titles so they pop against the "twilight" grey */
 section h2 {
     text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Specifically target the Walk section title */
-#walks h2 {
-    color: var(--secondary-color); 
-    text-shadow: 
-        0 2px 4px rgba(0,0,0,0.4),  
-        0 0 20px rgba(255,255,255,0.5); 
-}
-
-/* Ensure the description text below the title is readable */
-#walks p {
-    font-weight: 500;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.6); 
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-/* ======== READABILITY FIX: LIFT TEXT ABOVE TORCH ======== */
-
-/* The Torch layer is z-index: 90.
-   We set these text elements to z-index: 95.
-   This means the text "glows" above the darkness, 
-   while the map/background stays dark until you explore it!
-*/
-
+/* Readability Fix: Lift text ABOVE the torch layer */
 #walks h2, 
 #walks p {
-    position: relative; /* Required for z-index to work */
-    z-index: 95;        /* Sits above the torch layer */
-    
-    /* Add a strong 'Outer Glow' so it pops against any background */
+    position: relative;
+    z-index: 95;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 
                  0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Optional: Make the map container stay dark (under the torch) */
 .map-container {
     position: relative;
-    z-index: 2; /* Stays under the torch (z-index 90) */
+    z-index: 2; 
 }
