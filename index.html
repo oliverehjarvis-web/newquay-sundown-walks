@@ -18,6 +18,8 @@
 
     <canvas id="starsCanvas"></canvas>
 
+    <div id="torch-layer"></div>
+
     <a href="#contact" id="floatingBookBtn" class="floating-book-btn">
         <span class="btn-icon">📅</span>
         <span class="btn-text">Book Now</span>
@@ -413,6 +415,18 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
+        // --- TORCH EFFECT LOGIC (NEW) ---
+        const torchLayer = document.getElementById('torch-layer');
+        
+        // 1. Track Mouse Movement
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            // Update CSS variables on the torch layer
+            torchLayer.style.setProperty('--cursor-x', x + 'px');
+            torchLayer.style.setProperty('--cursor-y', y + 'px');
+        });
+
         // --- STARRY NIGHT EFFECT ---
         const canvas = document.getElementById('starsCanvas');
         const ctx = canvas.getContext('2d');
@@ -514,39 +528,39 @@
                 iconAnchor: [12, 12]  
             });
 
-// 4. Walk Data
-        const walks = [
-            {
-                lat: 50.413, lng: -5.097, 
-                title: 'Fistral Beach',
-                img: 'images/fistral.webp', 
-                desc: 'Wide open sands perfect for evening zoomies. We stick to the well-lit areas near the complex during winter evenings.'
-            },
-            {
-                lat: 50.405985, lng: -5.085767, 
-                title: 'The Gannel Estuary',
-                img: 'images/gannel.webp',
-                desc: 'A peaceful, low-tide favorite. Great for quiet sniffing sessions away from the busy town lights.'
-            },
-            {
-                lat: 50.411794, lng: -5.032314, 
-                title: 'The SANG, Nansledan',
-                img: 'images/sang.webp',
-                desc: 'Safe, enclosed fields away from roads. Perfect for practicing recall with our long-line leads.'
-            },
-            {
-                lat: 50.413809, lng: -5.000081, 
-                title: 'Colan Woods',
-                img: 'images/colan.webp',
-                desc: 'A sheltered woodland trail following a stream. Excellent for windy evenings when the beach is too exposed.'
-            },
-            {
-                lat: 50.377267, lng: -5.131551, 
-                title: 'Ellenglaze Footpath',
-                img: 'images/ellenglaze.webp',
-                desc: 'A hidden gem near Cubert. A gentle, quiet footpath that follows the stream down towards the dunes.'
-            }
-        ];
+            // 4. Walk Data
+            const walks = [
+                {
+                    lat: 50.413, lng: -5.097, 
+                    title: 'Fistral Beach',
+                    img: 'images/fistral.webp', 
+                    desc: 'Wide open sands perfect for evening zoomies. We stick to the well-lit areas near the complex during winter evenings.'
+                },
+                {
+                    lat: 50.405985, lng: -5.085767, 
+                    title: 'The Gannel Estuary',
+                    img: 'images/gannel.webp',
+                    desc: 'A peaceful, low-tide favorite. Great for quiet sniffing sessions away from the busy town lights.'
+                },
+                {
+                    lat: 50.411794, lng: -5.032314, 
+                    title: 'The SANG, Nansledan',
+                    img: 'images/sang.webp',
+                    desc: 'Safe, enclosed fields away from roads. Perfect for practicing recall with our long-line leads.'
+                },
+                {
+                    lat: 50.413809, lng: -5.000081, 
+                    title: 'Colan Woods',
+                    img: 'images/colan.webp',
+                    desc: 'A sheltered woodland trail following a stream. Excellent for windy evenings when the beach is too exposed.'
+                },
+                {
+                    lat: 50.377267, lng: -5.131551, 
+                    title: 'Ellenglaze Footpath',
+                    img: 'images/ellenglaze.webp',
+                    desc: 'A hidden gem near Cubert. A gentle, quiet footpath that follows the stream down towards the dunes.'
+                }
+            ];
 
             // 5. Add Markers
             walks.forEach(walk => {
@@ -895,7 +909,7 @@
 
         displayReview();
 
-        // --- SUNSET SCROLL EFFECT ---
+        // --- SUNSET SCROLL EFFECT & TORCH BRIGHTNESS ---
 
         const dayColors = {
             light: '#FEF6DF',
@@ -962,6 +976,15 @@
             let scrollFactor = window.scrollY / scrollTotal;
             scrollFactor = Math.min(Math.max(scrollFactor, 0), 1);
 
+            // --- Calculate Torch Opacity (Peak in middle) ---
+            // Using sine wave so it fades in, peaks at 50% scroll, and fades out at bottom
+            const torchOpacity = Math.sin(Math.PI * scrollFactor) * 0.9; // Max 0.9 opacity
+            
+            if (torchLayer) {
+                torchLayer.style.opacity = torchOpacity;
+            }
+
+            // --- Existing Color Interpolation ---
             const bgScrollFactor = scrollFactor;
             const textScrollFactor = Math.min(scrollFactor * 2, 1);
 
