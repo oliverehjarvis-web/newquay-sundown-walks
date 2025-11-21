@@ -1268,3 +1268,32 @@ footer {
         font-size: 1.5em;
     }
 }
+
+/* ======== READABILITY FIXES ======== */
+
+/* Add a shadow to all headings and paragraphs to separate them from the background */
+h1, h2, h3, h4, p {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* Subtle shadow for day */
+}
+
+/* Make the shadow stronger for main section titles so they pop against the "twilight" grey */
+section h2 {
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Specifically target the Walk section title (the one in your screenshot) */
+#walks h2 {
+    color: var(--secondary-color); /* Ensure it stays orange */
+    text-shadow: 
+        0 2px 4px rgba(0,0,0,0.4),  /* Close dark shadow */
+        0 0 20px rgba(255,255,255,0.5); /* Soft outer glow */
+}
+
+/* Ensure the description text below the title is readable */
+#walks p {
+    font-weight: 500; /* Make text slightly thicker */
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6); /* Stronger shadow for readability */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
