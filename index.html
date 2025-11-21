@@ -10,20 +10,19 @@
     
     <link rel="icon" href="images/sundown-walks-logo.webp">
     
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Starry Night Canvas -->
     <canvas id="starsCanvas"></canvas>
 
-    <!-- Floating Book Now Button -->
     <a href="#contact" id="floatingBookBtn" class="floating-book-btn">
         <span class="btn-icon">📅</span>
         <span class="btn-text">Book Now</span>
     </a>
 
-    <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/qr/MWIQHF6UPTQKC1" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path fill="white" d="M16 0C7.164 0 0 7.164 0 16c0 2.826.735 5.479 2.016 7.786L0 32l8.433-2.015A15.93 15.93 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.334c-2.568 0-5.053-.739-7.193-2.133l-.516-.306-5.345 1.279 1.279-5.345-.306-.516A13.264 13.264 0 012.666 16c0-7.364 5.97-13.334 13.334-13.334S29.334 8.636 29.334 16 23.364 29.334 16 29.334z"/>
@@ -41,6 +40,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#trust">Why Us</a></li>
+                <li><a href="#walks">Routes</a></li>
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -59,7 +59,6 @@
         <section id="services">
             <h2>Your Local Evening Walk Specialist</h2>
             
-            <!-- Service Timeline -->
             <div class="service-timeline">
                 <div class="timeline-item" data-step="1">
                     <div class="timeline-icon">📞</div>
@@ -209,7 +208,15 @@
             </div>
         </section>
 
-        <!-- Review Stats Dashboard -->
+        <section id="walks">
+            <h2>Our Favourite Evening Routes</h2>
+            <p>We know the safest, most well-lit, and atmospheric spots for evening adventures. Here are a few of our favourites.</p>
+            
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </section>
+
         <section id="review-stats">
             <div class="stats-container">
                 <div class="stat-item">
@@ -232,7 +239,6 @@
             <p>(All 41 reviews from my previous company, Waggers Pack)</p>
             <p>I am honoured to have only ever received 5-star reviews</p>
             
-            <!-- Redesigned Review Showcase -->
             <div class="review-showcase">
                 <div class="review-controls-top">
                     <button id="randomReviewBtn" class="random-review-btn">🎲 Random Review</button>
@@ -251,7 +257,6 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
         <section id="pricing">
             <h2>Simple, Transparent Pricing</h2>
             <p>No hidden fees, just honest pricing for quality care</p>
@@ -300,7 +305,6 @@
             </div>
         </section>
 
-        <!-- FAQ Section -->
         <section id="faq">
             <h2>Frequently Asked Questions</h2>
             <p>Everything you need to know about our evening dog walking service</p>
@@ -404,6 +408,8 @@
         <p>&copy; 2025 Newquay Sundown Walks. All rights reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -480,6 +486,78 @@
             resizeCanvas();
             initStars();
         });
+
+        // --- INTERACTIVE MAP LOGIC ---
+        const mapElement = document.getElementById('map');
+        if (mapElement && typeof L !== 'undefined') {
+            
+            const isMobile = window.innerWidth < 768;
+
+            // 1. Initialize Map
+            const map = L.map('map', {
+                scrollWheelZoom: false, 
+                dragging: !isMobile 
+            }).setView([50.405, -5.065], 12);
+
+            // 2. Add Tiles (OpenStreetMap)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+            
+            if (isMobile) { map.zoomControl.setPosition('bottomright'); }
+
+            // 3. Custom "Sunset" Icon
+            const pulsingIcon = L.divIcon({
+                className: 'leaflet-div-icon',
+                html: `<div class="pulsing-hotspot"></div>`,
+                iconSize: [24, 24],   
+                iconAnchor: [12, 12]  
+            });
+
+            // 4. Walk Data
+            const walks = [
+                {
+                    lat: 50.413, lng: -5.097, 
+                    title: 'Fistral Beach',
+                    img: 'images/Fistral.image.jpg', 
+                    desc: 'Wide open sands perfect for evening zoomies. We stick to the well-lit areas near the complex during winter evenings.'
+                },
+                {
+                    lat: 50.405985, lng: -5.085767, 
+                    title: 'The Gannel Estuary',
+                    img: 'images/The Gannel.Image.145034.jpg',
+                    desc: 'A peaceful, low-tide favorite. Great for quiet sniffing sessions away from the busy town lights.'
+                },
+                {
+                    lat: 50.411794, lng: -5.032314, 
+                    title: 'The SANG, Nansledan',
+                    img: 'images/The SANG.Image.151807.jpg',
+                    desc: 'Safe, enclosed fields away from roads. Perfect for practicing recall with our long-line leads.'
+                }
+            ];
+
+            // 5. Add Markers
+            walks.forEach(walk => {
+                const popupContent = `
+                    <img src="${walk.img}" alt="${walk.title}">
+                    <h4>${walk.title}</h4>
+                    <p>${walk.desc}</p>
+                `;
+
+                const marker = L.marker([walk.lat, walk.lng], {icon: pulsingIcon})
+                    .addTo(map)
+                    .bindPopup(popupContent, { autoPanPadding: L.point(50, 50) });
+
+                marker.on('popupopen', (e) => {
+                    const popup = e.popup;
+                    const img = popup.getElement().querySelector('img');
+                    if(img) {
+                        img.onload = () => { popup.update(); };
+                        if (img.complete) { popup.update(); }
+                    }
+                });
+            });
+        }
 
         // --- FLOATING BOOK NOW BUTTON ---
         const floatingBtn = document.getElementById('floatingBookBtn');
@@ -633,10 +711,6 @@
             { stars: 5, text: "Excellent dog sitting service while we were at Rick Stein's. Well worth it !", author: "Philip Bickle", source: "Google Review" },
             { stars: 5, text: "Great dog walker. Goes over and above! And my dog loves him.", author: "Liam", source: "Google Review" },
             { stars: 5, text: "I withdraw my previous review as there appears to have been a total mix up which was nobody's fault.", author: "Nicola Hoskin", source: "Google Review" },
-            { stars: 5, text: "", author: "Megan Crooks", source: "Google Review" },
-            { stars: 5, text: "", author: "Dan Bonney", source: "Google Review" },
-            { stars: 5, text: "", author: "Stephen Crowther", source: "Google Review" },
-            { stars: 5, text: "", author: "Mark 'NCW' Graham", source: "Google Review" },
             { stars: 5, text: "We booked Oli to look after our GSD for the day whilst we were out. We were on holiday... Oli was fabulous from the moment he arrived; making a beeline for Wilson and immediately engaging him... Oli was attentive and really relaxed...", author: "Charlotte Wilson", source: "Facebook Review" },
             { stars: 5, text: "Oli and the team treat my mad staffy like one of the family. Their communication is awesome and they stick to our arrangements like glue. Could not recommend them highly enough...", author: "Vivian Swift", source: "Facebook Review" },
             { stars: 5, text: "Waggers pack have been nothing but brilliant. I can tell my dog absolutely loves his adventures... Oli and the team have been so accommodating with last minute bookings... I know he's in good safe hands...", author: "Skye Wheeler", source: "Facebook Review" }
