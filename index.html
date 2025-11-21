@@ -520,12 +520,12 @@
             
             if (isMobile) { map.zoomControl.setPosition('bottomright'); }
 
-            // 3. Custom "Sunset" Icon
+            // 3. Custom "Sunset" Icon - UPDATED SIZE AND ANCHOR
             const pulsingIcon = L.divIcon({
                 className: 'leaflet-div-icon',
                 html: `<div class="pulsing-hotspot"></div>`,
-                iconSize: [24, 24],   
-                iconAnchor: [12, 12]  
+                iconSize: [30, 30],   // Increased from [24, 24]
+                iconAnchor: [15, 15]  // Adjusted anchor to center the larger icon
             });
 
             // 4. Walk Data
@@ -976,9 +976,8 @@
             let scrollFactor = window.scrollY / scrollTotal;
             scrollFactor = Math.min(Math.max(scrollFactor, 0), 1);
 
-            // --- Calculate Torch Opacity (Peak in middle) ---
-            // Using sine wave so it fades in, peaks at 50% scroll, and fades out at bottom
-            const torchOpacity = Math.sin(Math.PI * scrollFactor) * 0.9; // Max 0.9 opacity
+            // --- Calculate Torch Opacity ---
+            const torchOpacity = Math.sin(Math.PI * scrollFactor) * 0.9; 
             
             if (torchLayer) {
                 torchLayer.style.opacity = torchOpacity;
@@ -987,9 +986,8 @@
             // --- Existing Color Interpolation ---
             const bgScrollFactor = scrollFactor;
             
-            // CHANGE THIS LINE:
-            // Make text turn white 3x faster so it doesn't get stuck in "grey" mode
-            const textScrollFactor = Math.min(scrollFactor * 3, 1);
+            // Make text turn white faster to avoid the "grey on grey" readability issue
+            const textScrollFactor = Math.min(scrollFactor * 3, 1); 
 
             const newLight = interpolateColor(dayColors.light, nightColors.light, bgScrollFactor);
             const newWhite = interpolateColor(dayColors.white, nightColors.white, bgScrollFactor);
