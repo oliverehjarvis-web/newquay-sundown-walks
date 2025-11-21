@@ -26,6 +26,8 @@ body {
     line-height: 1.6;
     background-color: var(--white-color); 
     position: relative;
+    /* Ensure the body fills height for scroll calc */
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4 {
@@ -53,6 +55,29 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+}
+
+/* ======== TORCH LAYER (NEW) ======== */
+#torch-layer {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    z-index: 90; /* Below header/nav (100) but above content */
+    pointer-events: none; /* Crucial: Let clicks pass through */
+    
+    /* The magic: A transparent circle in the middle, fading to dark */
+    background: radial-gradient(
+        circle 250px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+        transparent 0%,
+        rgba(0, 0, 0, 0.1) 40%, /* Soft edge */
+        rgba(0, 0, 0, 0.92) 100% /* Dark surroundings */
+    );
+    
+    opacity: 0; /* Starts hidden, controlled by JS scroll */
+    transition: opacity 0.5s ease;
+    mix-blend-mode: multiply; /* Helps it darken the page naturally */
 }
 
 /* ======== STARRY NIGHT CANVAS ======== */
@@ -467,6 +492,93 @@ nav ul li a:hover {
 
 .gallery-item img:hover {
     transform: scale(1.05);
+}
+
+/* ======== INTERACTIVE MAP ======== */
+#walks {
+    background: var(--white-color); 
+    position: relative;
+    z-index: 2; 
+}
+
+.map-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 100%; 
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .map-container {
+        padding-bottom: 60%; 
+    }
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+/* Custom Leaflet Styles */
+.leaflet-div-icon {
+    background: transparent;
+    border: none;
+}
+
+.pulsing-hotspot {
+    width: 24px;
+    height: 24px;
+    background-color: var(--secondary-color); /* Your Sunset Orange */
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite ease-in-out;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.7; }
+}
+
+/* Popup Styles */
+.leaflet-popup-content-wrapper {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-family: inherit;
+}
+
+.leaflet-popup-content {
+    margin: 12px;
+    width: 220px !important;
+}
+
+.leaflet-popup-content h4 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.leaflet-popup-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.leaflet-popup-content p {
+    font-size: 0.9rem;
+    color: #333; 
+    margin: 0;
+    line-height: 1.4;
 }
 
 /* ======== REVIEW STATS DASHBOARD ======== */
@@ -997,93 +1109,6 @@ footer {
     z-index: 2;
 }
 
-/* ======== INTERACTIVE MAP ======== */
-#walks {
-    background: var(--white-color); /* Matches your theme */
-    position: relative;
-    z-index: 2; /* Ensures it sits above the starry canvas */
-}
-
-.map-container {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    padding-bottom: 100%; /* Square on mobile */
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-}
-
-@media (min-width: 768px) {
-    .map-container {
-        padding-bottom: 60%; /* Widescreen on desktop */
-    }
-}
-
-#map {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-}
-
-/* Custom Leaflet Styles */
-.leaflet-div-icon {
-    background: transparent;
-    border: none;
-}
-
-.pulsing-hotspot {
-    width: 24px;
-    height: 24px;
-    background-color: var(--secondary-color); /* Your Sunset Orange */
-    border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    animation: pulse 2s infinite ease-in-out;
-    cursor: pointer;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.6); opacity: 0.7; }
-}
-
-/* Popup Styles */
-.leaflet-popup-content-wrapper {
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    font-family: inherit; /* Uses your site's font */
-}
-
-.leaflet-popup-content {
-    margin: 12px;
-    width: 220px !important;
-}
-
-.leaflet-popup-content h4 {
-    font-size: 1.1rem;
-    color: var(--primary-color); /* Your Slate Blue */
-    margin-bottom: 8px;
-    margin-top: 0;
-}
-
-.leaflet-popup-content img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin-bottom: 8px;
-}
-
-.leaflet-popup-content p {
-    font-size: 0.9rem;
-    color: #333; 
-    margin: 0;
-    line-height: 1.4;
-}
-
 /* ======== MOBILE RESPONSIVENESS ======== */
 @media (max-width: 768px) {
     nav ul { display: none; }
@@ -1281,18 +1306,18 @@ section h2 {
     text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Specifically target the Walk section title (the one in your screenshot) */
+/* Specifically target the Walk section title */
 #walks h2 {
-    color: var(--secondary-color); /* Ensure it stays orange */
+    color: var(--secondary-color); 
     text-shadow: 
-        0 2px 4px rgba(0,0,0,0.4),  /* Close dark shadow */
-        0 0 20px rgba(255,255,255,0.5); /* Soft outer glow */
+        0 2px 4px rgba(0,0,0,0.4),  
+        0 0 20px rgba(255,255,255,0.5); 
 }
 
 /* Ensure the description text below the title is readable */
 #walks p {
-    font-weight: 500; /* Make text slightly thicker */
-    text-shadow: 0 1px 4px rgba(0,0,0,0.6); /* Stronger shadow for readability */
+    font-weight: 500;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6); 
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
