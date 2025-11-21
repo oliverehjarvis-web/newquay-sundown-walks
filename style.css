@@ -1322,3 +1322,26 @@ section h2 {
     margin-left: auto;
     margin-right: auto;
 }
+/* ======== READABILITY FIX: LIFT TEXT ABOVE TORCH ======== */
+
+/* The Torch layer is z-index: 90.
+   We set these text elements to z-index: 95.
+   This means the text "glows" above the darkness, 
+   while the map/background stays dark until you explore it!
+*/
+
+#walks h2, 
+#walks p {
+    position: relative; /* Required for z-index to work */
+    z-index: 95;        /* Sits above the torch layer */
+    
+    /* Add a strong 'Outer Glow' so it pops against any background */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 
+                 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Optional: Make the map container stay dark (under the torch) */
+.map-container {
+    position: relative;
+    z-index: 2; /* Stays under the torch (z-index 90) */
+}
