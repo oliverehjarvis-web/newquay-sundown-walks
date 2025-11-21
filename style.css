@@ -69,7 +69,7 @@ img {
     
     /* The magic: A transparent circle in the middle, fading to dark */
     background: radial-gradient(
-        circle 250px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+        circle 500px at var(--cursor-x, 50%) var(--cursor-y, 50%),
         transparent 0%,
         rgba(0, 0, 0, 0.1) 40%, /* Soft edge */
         rgba(0, 0, 0, 0.92) 100% /* Dark surroundings */
