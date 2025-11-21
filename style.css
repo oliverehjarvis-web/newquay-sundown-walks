@@ -997,6 +997,93 @@ footer {
     z-index: 2;
 }
 
+/* ======== INTERACTIVE MAP ======== */
+#walks {
+    background: var(--white-color); /* Matches your theme */
+    position: relative;
+    z-index: 2; /* Ensures it sits above the starry canvas */
+}
+
+.map-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 100%; /* Square on mobile */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .map-container {
+        padding-bottom: 60%; /* Widescreen on desktop */
+    }
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+/* Custom Leaflet Styles */
+.leaflet-div-icon {
+    background: transparent;
+    border: none;
+}
+
+.pulsing-hotspot {
+    width: 24px;
+    height: 24px;
+    background-color: var(--secondary-color); /* Your Sunset Orange */
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite ease-in-out;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.7; }
+}
+
+/* Popup Styles */
+.leaflet-popup-content-wrapper {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-family: inherit; /* Uses your site's font */
+}
+
+.leaflet-popup-content {
+    margin: 12px;
+    width: 220px !important;
+}
+
+.leaflet-popup-content h4 {
+    font-size: 1.1rem;
+    color: var(--primary-color); /* Your Slate Blue */
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.leaflet-popup-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.leaflet-popup-content p {
+    font-size: 0.9rem;
+    color: #333; 
+    margin: 0;
+    line-height: 1.4;
+}
+
 /* ======== MOBILE RESPONSIVENESS ======== */
 @media (max-width: 768px) {
     nav ul { display: none; }
