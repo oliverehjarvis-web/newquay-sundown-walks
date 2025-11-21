@@ -986,7 +986,10 @@
 
             // --- Existing Color Interpolation ---
             const bgScrollFactor = scrollFactor;
-            const textScrollFactor = Math.min(scrollFactor * 2, 1);
+            
+            // CHANGE THIS LINE:
+            // Make text turn white 3x faster so it doesn't get stuck in "grey" mode
+            const textScrollFactor = Math.min(scrollFactor * 3, 1);
 
             const newLight = interpolateColor(dayColors.light, nightColors.light, bgScrollFactor);
             const newWhite = interpolateColor(dayColors.white, nightColors.white, bgScrollFactor);
