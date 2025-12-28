@@ -12,6 +12,10 @@
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -53,9 +57,11 @@
 
     <main>
         <section id="home" class="hero">
-            <h1>Evening Dog Walker in Newquay</h1>
-            <p class="subtitle">Peace Of Mind When The Sun Goes Down</p>
-            <a href="#services" class="cta-button">See Our Services</a>
+            <div class="hero-content">
+                <h1>Evening Dog Walker in Newquay</h1>
+                <p class="subtitle">Peace Of Mind When The Sun Goes Down</p>
+                <a href="#services" class="cta-button">See Our Services</a>
+            </div>
         </section>
 
         <section id="services">
@@ -115,7 +121,9 @@
 
         <section id="about">
             <h2>About Me</h2>
-            <p>Hi, I'm Oli. I have over 10 years of experience in dog walking and absolutely love it. I've recently changed careers, but my passion for walking dogs remains, which is why I'm excited to continue this as my evening work. I look forward to meeting you and your furry friend!</p>
+            <div class="about-card">
+                <p>Hi, I'm Oli. I have over 10 years of experience in dog walking and absolutely love it. I've recently changed careers, but my passion for walking dogs remains, which is why I'm excited to continue this as my evening work. I look forward to meeting you and your furry friend!</p>
+            </div>
         </section>
 
         <section id="trust">
@@ -168,7 +176,7 @@
                 </div>
             </div>
 
-            <a id="toggleGalleryButton" href="#" class="cta-button">Show Photo Gallery</a>
+            <a id="toggleGalleryButton" href="#" class="cta-button gallery-btn">Show Photo Gallery</a>
 
             <div id="galleryWrapper" class="gallery-wrapper">
                 <h3 class="gallery-title">A Few of Our Happy Clients</h3>
@@ -415,14 +423,12 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        // --- TORCH EFFECT LOGIC (NEW) ---
+        // --- TORCH EFFECT LOGIC ---
         const torchLayer = document.getElementById('torch-layer');
         
-        // 1. Track Mouse Movement
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
-            // Update CSS variables on the torch layer
             torchLayer.style.setProperty('--cursor-x', x + 'px');
             torchLayer.style.setProperty('--cursor-y', y + 'px');
         });
@@ -507,28 +513,24 @@
             
             const isMobile = window.innerWidth < 768;
 
-            // 1. Initialize Map
             const map = L.map('map', {
                 scrollWheelZoom: false, 
                 dragging: !isMobile 
             }).setView([50.405, -5.065], 12);
 
-            // 2. Add Tiles (OpenStreetMap)
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
             
             if (isMobile) { map.zoomControl.setPosition('bottomright'); }
 
-            // 3. Custom "Sunset" Icon - UPDATED SIZE AND ANCHOR
             const pulsingIcon = L.divIcon({
                 className: 'leaflet-div-icon',
                 html: `<div class="pulsing-hotspot"></div>`,
-                iconSize: [30, 30],   // Increased from [24, 24]
-                iconAnchor: [15, 15]  // Adjusted anchor to center the larger icon
+                iconSize: [30, 30],   
+                iconAnchor: [15, 15]  
             });
 
-            // 4. Walk Data
             const walks = [
                 {
                     lat: 50.413, lng: -5.097, 
@@ -562,7 +564,6 @@
                 }
             ];
 
-            // 5. Add Markers
             walks.forEach(walk => {
                 const popupContent = `
                     <img src="${walk.img}" alt="${walk.title}">
