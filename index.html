@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional dog care in Newquay. Specialising in evening walks and full-day weekend adventure daycare on Bodmin Moor and Cornish beaches.">
+    <meta name="description" content="Professional dog care in Newquay. Specialising in evening walks and full-day weekend adventure daycare.">
     <title>Dog Walker & Weekend Daycare Newquay | Newquay Sundown Walks</title>
     
     <link rel="icon" href="images/sundown-walks-logo.webp">
@@ -44,7 +44,7 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Adventures</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="blog.html">Blog</a></li> 
                     <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#contact" class="nav-cta">Book Now</a></li>
@@ -74,7 +74,6 @@
                     <h2>Our Services</h2>
                     <p class="section-intro">Whether it's a peaceful evening stroll or a wild weekend on the moors, we have the perfect adventure for your dog.</p>
                 </div>
-
                 <div class="service-card-large premium-glass">
                     <div class="service-content">
                         <div class="service-icon">🌙</div>
@@ -92,7 +91,6 @@
                         <img src="images/dogs-on-footpath.webp" alt="Dogs walking in the evening" loading="lazy">
                     </div>
                 </div>
-
                 <div class="service-card-large premium-glass reverse-layout">
                     <div class="service-content">
                         <div class="service-icon">🌲</div>
@@ -144,6 +142,22 @@
             </div>
         </section>
 
+        <section id="latest-news">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Latest Adventures</h2>
+                    <p class="section-intro">See what the pack has been up to lately.</p>
+                </div>
+                
+                <div id="homeBlogGrid" class="blog-grid">
+                    </div>
+
+                <div style="text-align:center; margin-top:40px;">
+                    <a href="blog.html" class="cta-button secondary">Read All Stories →</a>
+                </div>
+            </div>
+        </section>
+
         <section id="gallery">
             <div class="container">
                 <div class="section-header">
@@ -182,7 +196,6 @@
                         </ul>
                         <a href="#contact" class="btn-outline">Book Now</a>
                     </div>
-
                     <div class="pricing-card premium-glass featured">
                         <div class="badge">Most Popular</div>
                         <h3>Sundown Walk</h3>
@@ -197,7 +210,6 @@
                         </ul>
                         <a href="#contact" class="btn-filled">Book Now</a>
                     </div>
-
                     <div class="pricing-card premium-glass">
                         <div class="badge new">New Service</div>
                         <h3>Weekend Adventure</h3>
@@ -298,16 +310,42 @@
     </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    
+    <script src="posts/blog-data.js"></script>
+
     <script>
-        // --- 1. DARK MODE TOGGLE ---
+        // --- 1. RENDER HOMEPAGE BLOGS ---
+        const homeBlogGrid = document.getElementById('homeBlogGrid');
+        if(typeof blogPosts !== 'undefined' && homeBlogGrid) {
+            // Sort by date (newest first) and take the top 3
+            const latestPosts = blogPosts.sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+            
+            latestPosts.forEach(post => {
+                const article = document.createElement('article');
+                article.className = 'blog-card premium-glass';
+                article.innerHTML = `
+                    <div class="blog-img-wrapper">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy">
+                        <span class="blog-category">${post.category}</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">${new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                        <h3>${post.title}</h3>
+                        <p>${post.snippet}</p>
+                        <a href="${post.link}" class="text-link">Read Story →</a>
+                    </div>
+                `;
+                homeBlogGrid.appendChild(article);
+            });
+        }
+
+        // --- 2. DARK MODE TOGGLE ---
         const themeBtn = document.getElementById('themeToggle');
         const iconSpan = themeBtn.querySelector('.icon');
-        
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
             iconSpan.textContent = '☀️';
         }
-
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
@@ -317,7 +355,7 @@
             else ctx.clearRect(0, 0, canvas.width, canvas.height);
         });
 
-        // --- 2. REVIEW SLIDER & RANDOMIZER ---
+        // --- 3. REVIEW LOGIC ---
         const reviews = [
             { text: "Oli is brilliant at his job and my dog loves him. He is really flexible and will walk my dog at short notice. Highly recommend.", author: "Sue Lake" },
             { text: "Been walking our dog Rupert for over 2 years now... especially enjoy the app updates! I can highly recommend 👍", author: "Radram" },
@@ -341,7 +379,6 @@
                 authorElem.style.opacity = 1;
             }, 300);
         }
-        
         document.getElementById('nextReview').addEventListener('click', () => {
             currentReview = (currentReview + 1) % reviews.length;
             showReview(currentReview);
@@ -350,8 +387,6 @@
             currentReview = (currentReview - 1 + reviews.length) % reviews.length;
             showReview(currentReview);
         });
-        
-        // ADDED RANDOM LOGIC
         document.getElementById('randomReviewBtn').addEventListener('click', () => {
             let newIndex;
             do { newIndex = Math.floor(Math.random() * reviews.length); } while (newIndex === currentReview);
@@ -359,7 +394,7 @@
             showReview(currentReview);
         });
 
-        // --- 3. STARS ANIMATION ---
+        // --- 4. STARS ANIMATION ---
         const canvas = document.getElementById('starsCanvas');
         const ctx = canvas.getContext('2d');
         let stars = [];
