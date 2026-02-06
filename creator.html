@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Creator | Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Admin Specific Styles */
+        body { padding-bottom: 50px; }
+        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0B131E; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        .creator-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .tool-panel { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; color: #526C83; }
+        input, textarea, select { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; font-family: 'Nunito'; font-size: 1rem; box-sizing: border-box; }
+        input:focus, textarea:focus { border-color: #F0B45D; outline: none; }
+        .ai-output { background: #f8f9fa; padding: 15px; border-radius: 10px; font-family: monospace; font-size: 0.9em; border: 1px dashed #ccc; margin-top: 10px; cursor: pointer; }
+        .preview-area { border: 2px dashed #ccc; padding: 20px; min-height: 400px; border-radius: 20px; margin-top: 20px; background: #FEF6DF; }
+        
+        /* Template Styles for Preview */
+        .template-visual img { width: 100%; height: 400px; object-fit: cover; border-radius: 20px; margin-bottom: 20px; }
+        .template-standard img { float: left; width: 40%; margin-right: 20px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="loginOverlay">
+        <h2 style="color:white; margin-bottom:20px;">Sundown Admin</h2>
+        <input type="password" id="passwordInput" placeholder="Enter Password" style="width: 300px; text-align: center;">
+        <button onclick="checkPass()" class="cta-button primary" style="margin-top: 20px;">Unlock</button>
+    </div>
+
+    <div class="container" style="display:none;" id="adminContent">
+        <div class="section-header">
+            <h1>Blog Post Creator</h1>
+            <p>Generate prompts, build posts, and export HTML.</p>
+        </div>
+
+        <div class="creator-grid">
+            
+            <div class="left-col">
+                
+                <div class="tool-panel premium-glass" style="margin-bottom: 30px;">
+                    <h3>🤖 1. AI Idea Assistant</h3>
+                    <p style="font-size: 0.9em;">Fill this out to get a prompt for ChatGPT.</p>
+                    
+                    <div class="input-group">
+                        <label>Blog Topic / Event</label>
+                        <input type="text" id="aiTopic" placeholder="e.g. Rainy day walk at Fistral">
+                    </div>
+                    <div class="input-group">
+                        <label>Key Highlights (comma separated)</label>
+                        <input type="text" id="aiPoints" placeholder="e.g. muddy paws, rainbow, dogs loved puddles">
+                    </div>
+                    <div class="input-group">
+                        <label>Tone</label>
+                        <select id="aiTone">
+                            <option value="adventurous">Adventurous & Exciting</option>
+                            <option value="informative">Informative & Helpful</option>
+                            <option value="funny">Funny & Lighthearted</option>
+                        </select>
+                    </div>
+                    <button onclick="generatePrompt()" class="cta-button secondary" style="width:100%">Generate AI Prompt</button>
+                    
+                    <div id="promptOutput" class="ai-output" style="display:none;" title="Click to Copy" onclick="copyPrompt()">
+                        </div>
+                </div>
+
+                <div class="tool-panel premium-glass">
+                    <h3>✍️ 2. Build Post</h3>
+                    <div class="input-group">
+                        <label>Post Title</label>
+                        <input type="text" id="postTitle" oninput="updatePreview()">
+                    </div>
+                    <div class="input-group">
+                        <label>Date</label>
+                        <input type="date" id="postDate" oninput="updatePreview()">
+                    </div>
+                    <div class="input-group">
+                        <label>Template Style</label>
+                        <select id="postTemplate" onchange="updatePreview()">
+                            <option value="visual">📸 Visual Story (Big Header Image)</option>
+                            <option value="standard">📝 Standard Article (Text Focus)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Main Image Filename</label>
+                        <input type="text" id="postImage" placeholder="images/..." oninput="updatePreview()">
+                    </div>
+                    <div class="input-group">
+                        <label>Content (Paste from AI)</label>
+                        <textarea id="postContent" rows="10" oninput="updatePreview()"></textarea>
+                    </div>
+                </div>
+
+                <button onclick="downloadHTML()" class="cta-button primary" style="width:100%; margin-top:20px;">⬇️ Download Post HTML</button>
+            </div>
+
+            <div class="right-col">
+                <h3>Live Preview</h3>
+                <div id="livePreview" class="preview-area">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- SECURITY (Basic) ---
+        function checkPass() {
+            const p = document.getElementById('passwordInput').value;
+            if(p === "newquaydogs") { // CHANGE THIS PASSWORD
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('adminContent').style.display = 'block';
+            } else {
+                alert("Incorrect password");
+            }
+        }
+
+        // --- AI PROMPT LOGIC ---
+        function generatePrompt() {
+            const topic = document.getElementById('aiTopic').value;
+            const points = document.getElementById('aiPoints').value;
+            const tone = document.getElementById('aiTone').value;
+            
+            const prompt = `Write a blog post for a Dog Walking business in Newquay, Cornwall. 
+Topic: ${topic}. 
+Key details to include: ${points}. 
+Tone: ${tone}. 
+Format: Use short paragraphs, include a catchy title, and use British English spelling.`;
+            
+            const out = document.getElementById('promptOutput');
+            out.innerText = prompt;
+            out.style.display = 'block';
+        }
+
+        function copyPrompt() {
+            const text = document.getElementById('promptOutput').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Prompt copied! Paste into ChatGPT.");
+        }
+
+        // --- PREVIEW LOGIC ---
+        function updatePreview() {
+            const title = document.getElementById('postTitle').value || "Post Title";
+            const date = document.getElementById('postDate').value || "Date";
+            const img = document.getElementById('postImage').value || "images/sundown-walks-logo.webp";
+            const content = document.getElementById('postContent').value || "Content goes here...";
+            const template = document.getElementById('postTemplate').value;
+
+            // Convert newlines to paragraph tags for HTML preview
+            const formattedContent = content.split('\n').map(p => p.trim() ? `<p>${p}</p>` : '').join('');
+
+            let html = '';
+            
+            if(template === 'visual') {
+                html = `
+                    <div class="template-visual">
+                        <img src="${img}" alt="Blog Image">
+                        <span style="color:var(--gold); font-weight:700;">${date}</span>
+                        <h1 style="color:var(--primary);">${title}</h1>
+                        <div class="blog-text">${formattedContent}</div>
+                    </div>
+                `;
+            } else {
+                html = `
+                    <div class="template-standard">
+                        <h1 style="color:var(--primary);">${title}</h1>
+                        <span style="color:#888; display:block; margin-bottom:20px;">${date}</span>
+                        <div class="clearfix">
+                            <img src="${img}" alt="Blog Image">
+                            <div class="blog-text">${formattedContent}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('livePreview').innerHTML = html;
+        }
+
+        // --- EXPORT LOGIC ---
+        function downloadHTML() {
+            const content = document.getElementById('livePreview').innerHTML;
+            const title = document.getElementById('postTitle').value.replace(/\s+/g, '-').toLowerCase();
+            
+            const fullPage = `
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${document.getElementById('postTitle').value} | Newquay Sundown Walks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main style="padding-top:100px;">
+        <div class="container premium-glass" style="max-width: 800px; margin: 0 auto;">
+            ${content}
+            <div style="margin-top:50px; text-align:center;">
+                <a href="blog.html" class="cta-button secondary">← Back to Blog</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>`;
+
+            const blob = new Blob([fullPage], {type: 'text/html'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `${title}.html`;
+            a.click();
+        }
+    </script>
+</body>
+</html>
