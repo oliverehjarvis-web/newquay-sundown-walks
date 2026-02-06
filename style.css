@@ -174,9 +174,8 @@ nav {
     background: linear-gradient(rgba(13, 27, 42, 0.5), rgba(13, 27, 42, 0.3)), url('images/collie-on-beach.webp');
     background-size: cover; background-position: center; background-attachment: fixed;
     color: white; 
-    padding: 0; /* Remove padding here, handled by internal container */
+    padding: 0;
 }
-/* Container allows text to stay centered/contained */
 .hero-container {
     width: 100%;
     height: 100%;
@@ -187,7 +186,7 @@ nav {
 }
 .hero-content { max-width: 800px; z-index: 2; }
 .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; color: white; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-.hero p { color: rgba(255,255,255,0.9); } /* Override global P color for hero */
+.hero p { color: rgba(255,255,255,0.9); } 
 
 .hero-tag { background: var(--gold); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: inline-block; }
 .subtitle { font-size: 1.3rem; margin-bottom: 40px; }
@@ -236,7 +235,8 @@ body.dark-mode .service-tag { color: #8baec9; }
 .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--gold); color: white; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
 .badge.new { background: #526C83; }
 
-.price { font-size: 3.5rem; font-weight: 800; color: var(--text-main); font-family: 'Outfit'; }
+/* Pricing Font size adjusted to fit double pricing if needed */
+.price { font-size: 3rem; font-weight: 800; color: var(--text-main); font-family: 'Outfit'; margin: 15px 0; }
 .price-sub { color: #888; margin-top: -10px; font-size: 0.9rem; }
 .pricing-card hr { border: 0; height: 1px; background: var(--glass-border); margin: 20px 0; }
 .pricing-card ul { list-style: none; padding: 0; text-align: left; margin-bottom: 30px; }
@@ -257,6 +257,21 @@ body.dark-mode .service-tag { color: #8baec9; }
 .review-quote { font-size: 1.4rem; font-style: italic; color: var(--text-main); }
 .review-author { font-weight: 700; margin-top: 20px; color: var(--primary); }
 body.dark-mode .review-author { color: #8baec9; }
+
+/* Random Button Style */
+.random-review-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--glass-border);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin: 20px 0;
+    transition: 0.2s;
+}
+.random-review-btn:hover { background: var(--gold); border-color: var(--gold); color: white; }
 
 .review-controls button { background: none; border: 1px solid var(--glass-border); color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; margin: 0 10px; transition: 0.2s; }
 .review-controls button:hover { background: var(--gold); border-color: var(--gold); color: white; }
