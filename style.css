@@ -6,10 +6,12 @@
     --gold: #F0B45D;
     --gold-dark: #d89844;
     
-    /* Dynamic Variables (controlled by JS) */
+    /* LIGHT MODE (Default) */
     --bg-color: #FEF6DF; 
     --text-main: #2c3e50;
+    --text-muted: #555;
     
+    /* Glass Variables (Light) */
     --glass-bg: rgba(255, 255, 255, 0.85);
     --glass-border: rgba(255, 255, 255, 0.5);
     --shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -18,23 +20,54 @@
     --container-width: 1200px;
 }
 
+/* DARK MODE OVERRIDES */
+body.dark-mode {
+    --bg-color: #0B131E;
+    --text-main: #EAEAEA;
+    --text-muted: #aaa;
+    
+    --glass-bg: rgba(20, 30, 48, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
 html { scroll-behavior: smooth; }
 body {
     font-family: 'Nunito', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
     margin: 0; padding: 0;
-    transition: color 0.5s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
     overflow-x: hidden;
 }
 
 h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--gold); margin-top: 0; }
-p { line-height: 1.6; margin-bottom: 1.5rem; }
+p { line-height: 1.6; margin-bottom: 1.5rem; color: var(--text-muted); }
+body.dark-mode p { color: var(--text-muted); }
+
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; height: auto; border-radius: var(--radius); }
 
 /* =========================================
-   2. UI COMPONENTS (Buttons & Glass)
+   2. LAYOUT UTILITIES
+   ========================================= */
+section {
+    width: 100%;
+    padding: 100px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-header { text-align: center; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+/* =========================================
+   3. UI COMPONENTS (Buttons & Glass)
    ========================================= */
 .premium-glass {
     background: var(--glass-bg);
@@ -44,7 +77,7 @@ img { max-width: 100%; height: auto; border-radius: var(--radius); }
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 30px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background 0.5s ease;
 }
 .premium-glass:hover { transform: translateY(-5px); }
 
@@ -71,6 +104,24 @@ img { max-width: 100%; height: auto; border-radius: var(--radius); }
 }
 .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    background: rgba(0,0,0,0.05);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle-btn:hover { background: rgba(0,0,0,0.1); }
+body.dark-mode .theme-toggle-btn { background: rgba(255,255,255,0.1); }
+
 /* Floating Buttons */
 .floating-book-btn {
     position: fixed; bottom: 30px; right: 30px;
@@ -90,49 +141,63 @@ img { max-width: 100%; height: auto; border-radius: var(--radius); }
 .whatsapp-float svg { width: 30px; fill: white; }
 
 /* =========================================
-   3. HEADER & HERO
+   4. HEADER & HERO
    ========================================= */
 header {
     position: sticky; top: 0; z-index: 99;
     padding: 10px 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--glass-bg);
     backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: background 0.5s ease;
 }
 nav {
     max-width: var(--container-width); margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 20px;
 }
+.nav-right { display: flex; align-items: center; }
+
 .logo-img { height: 50px; }
 .nav-links { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; align-items: center; }
-.nav-links a { font-weight: 600; font-size: 0.95rem; color: #333; transition: 0.2s; }
+.nav-links a { font-weight: 600; font-size: 0.95rem; color: var(--text-main); transition: 0.2s; }
 .nav-links a:hover { color: var(--gold); }
 .nav-cta {
     background: var(--gold); color: white !important;
     padding: 8px 20px; border-radius: 20px;
 }
 
+/* HERO: Full width background */
 .hero {
     min-height: 85vh;
     display: flex; align-items: center; justify-content: center; text-align: center;
     background: linear-gradient(rgba(13, 27, 42, 0.5), rgba(13, 27, 42, 0.3)), url('images/collie-on-beach.webp');
     background-size: cover; background-position: center; background-attachment: fixed;
-    color: white; padding: 20px;
+    color: white; 
+    padding: 0; /* Remove padding here, handled by internal container */
+}
+/* Container allows text to stay centered/contained */
+.hero-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
 }
 .hero-content { max-width: 800px; z-index: 2; }
 .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; color: white; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.hero p { color: rgba(255,255,255,0.9); } /* Override global P color for hero */
+
 .hero-tag { background: var(--gold); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: inline-block; }
-.subtitle { font-size: 1.3rem; margin-bottom: 40px; color: rgba(255,255,255,0.9); }
+.subtitle { font-size: 1.3rem; margin-bottom: 40px; }
 
 /* =========================================
-   4. SERVICES (The Redesign)
+   5. SERVICES & CONTENT
    ========================================= */
-section { padding: 100px 20px; max-width: var(--container-width); margin: 0 auto; position: relative; z-index: 2; }
-.section-header { text-align: center; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; }
-
 .service-card-large {
     display: flex; align-items: center; gap: 50px; margin-bottom: 60px;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--glass-bg);
 }
 .service-card-large.reverse-layout { flex-direction: row-reverse; }
 
@@ -142,18 +207,19 @@ section { padding: 100px 20px; max-width: var(--container-width); margin: 0 auto
 
 .service-icon { font-size: 3rem; margin-bottom: 15px; }
 .service-tag { color: var(--primary); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 10px; }
-.service-content h3 { font-size: 2.2rem; color: #2c3e50; margin-bottom: 15px; }
+body.dark-mode .service-tag { color: #8baec9; }
+.service-content h3 { font-size: 2.2rem; color: var(--text-main); margin-bottom: 15px; }
 
 .feature-list { list-style: none; padding: 0; margin-top: 20px; }
-.feature-list li { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); position: relative; padding-left: 30px; }
+.feature-list li { padding: 10px 0; border-bottom: 1px solid var(--glass-border); position: relative; padding-left: 30px; color: var(--text-muted); }
 .feature-list li::before { content: '✓'; color: var(--gold); position: absolute; left: 0; font-weight: bold; }
 
 /* =========================================
-   5. TRUST & GALLERY
+   6. TRUST & GALLERY
    ========================================= */
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
 .trust-icon { font-size: 2.5rem; margin-bottom: 15px; }
-.trust-item h4 { color: #2c3e50; margin-bottom: 5px; }
+.trust-item h4 { color: var(--text-main); margin-bottom: 5px; }
 
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 40px; }
 .gallery-img { width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s; }
@@ -161,60 +227,58 @@ section { padding: 100px 20px; max-width: var(--container-width); margin: 0 auto
 .text-link { color: var(--gold); font-weight: 700; border-bottom: 2px solid var(--gold); }
 
 /* =========================================
-   6. PRICING
+   7. PRICING
    ========================================= */
 .pricing-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
-.pricing-card { flex: 1; min-width: 300px; max-width: 350px; text-align: center; position: relative; background: rgba(255,255,255,0.95); }
+.pricing-card { flex: 1; min-width: 300px; max-width: 350px; text-align: center; position: relative; background: var(--glass-bg); }
 .pricing-card.featured { transform: scale(1.05); border: 2px solid var(--gold); z-index: 3; }
 
 .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--gold); color: white; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
 .badge.new { background: #526C83; }
 
-.price { font-size: 3.5rem; font-weight: 800; color: #2c3e50; font-family: 'Outfit'; }
+.price { font-size: 3.5rem; font-weight: 800; color: var(--text-main); font-family: 'Outfit'; }
 .price-sub { color: #888; margin-top: -10px; font-size: 0.9rem; }
-.pricing-card hr { border: 0; height: 1px; background: #eee; margin: 20px 0; }
+.pricing-card hr { border: 0; height: 1px; background: var(--glass-border); margin: 20px 0; }
 .pricing-card ul { list-style: none; padding: 0; text-align: left; margin-bottom: 30px; }
-.pricing-card ul li { padding: 8px 0; color: #555; }
+.pricing-card ul li { padding: 8px 0; color: var(--text-muted); }
 
 .btn-outline, .btn-filled { display: block; padding: 12px; border-radius: 10px; font-weight: 700; transition: 0.2s; }
-.btn-outline { border: 2px solid #eee; color: #555; }
+.btn-outline { border: 2px solid var(--glass-border); color: var(--text-muted); }
 .btn-filled { background: var(--gold); color: white; }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 .btn-filled:hover { background: var(--gold-dark); }
-.discount-banner { text-align: center; margin-top: 30px; background: rgba(255,255,255,0.5); padding: 15px; }
+.discount-banner { text-align: center; margin-top: 30px; background: rgba(255,255,255,0.2); padding: 15px; }
 
 /* =========================================
-   7. REVIEWS, FAQ & CONTACT
+   8. REVIEWS, FAQ & CONTACT
    ========================================= */
 .review-showcase { text-align: center; max-width: 800px; margin: 0 auto; padding: 50px; }
 .stars { color: var(--gold); font-size: 1.5rem; margin-bottom: 20px; }
-.review-quote { font-size: 1.4rem; font-style: italic; color: #2c3e50; }
+.review-quote { font-size: 1.4rem; font-style: italic; color: var(--text-main); }
 .review-author { font-weight: 700; margin-top: 20px; color: var(--primary); }
-.review-controls button { background: none; border: 1px solid #ccc; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; margin: 0 10px; transition: 0.2s; }
+body.dark-mode .review-author { color: #8baec9; }
+
+.review-controls button { background: none; border: 1px solid var(--glass-border); color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; margin: 0 10px; transition: 0.2s; }
 .review-controls button:hover { background: var(--gold); border-color: var(--gold); color: white; }
 
 .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.faq-item h4 { color: #2c3e50; margin-bottom: 10px; }
-.faq-item p { font-size: 0.95rem; color: #555; margin: 0; }
+.faq-item h4 { color: var(--text-main); margin-bottom: 10px; }
+.faq-item p { font-size: 0.95rem; margin: 0; }
 
 .contact-box { text-align: center; max-width: 700px; margin: 0 auto; }
 .contact-methods { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
-.contact-method { display: flex; align-items: center; background: white; padding: 15px; border-radius: 15px; gap: 20px; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.contact-method { display: flex; align-items: center; background: var(--glass-bg); padding: 15px; border-radius: 15px; gap: 20px; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .contact-method:hover { transform: translateX(5px); }
-.contact-method .icon { font-size: 1.5rem; background: #f4f4f4; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.contact-method .icon { font-size: 1.5rem; background: rgba(0,0,0,0.05); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+body.dark-mode .contact-method .icon { background: rgba(255,255,255,0.1); }
 .contact-method .details { display: flex; flex-direction: column; text-align: left; }
 .contact-method .label { font-size: 0.8rem; color: #888; text-transform: uppercase; }
-.contact-method .value { font-weight: 700; color: #2c3e50; }
+.contact-method .value { font-weight: 700; color: var(--text-main); }
 
-footer { background: #0B131E; color: #888; text-align: center; padding: 60px 20px; margin-top: 60px; }
+footer { background: #0B131E; color: #888; text-align: center; padding: 60px 20px; margin-top: 0; }
 .footer-logo { height: 60px; margin-bottom: 20px; opacity: 0.8; }
 
-/* =========================================
-   8. BACKGROUND FX
-   ========================================= */
-#starsCanvas, #torch-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-#starsCanvas { z-index: 0; }
-#torch-layer { z-index: 1; background: radial-gradient(circle 500px at var(--cursor-x) var(--cursor-y), transparent 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.95) 100%); opacity: 0; }
+#starsCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
 /* MOBILE */
 @media (max-width: 768px) {
@@ -222,8 +286,8 @@ footer { background: #0B131E; color: #888; text-align: center; padding: 60px 20p
     .service-card-large { flex-direction: column !important; gap: 0; overflow: hidden; }
     .service-img-wrapper img { height: 250px; }
     .trust-grid { grid-template-columns: 1fr 1fr; }
-    .nav-links { display: none; } /* Simplified for code brevity */
+    .nav-links { display: none; } 
     .pricing-card.featured { transform: scale(1); }
     header { text-align: center; }
-    nav { justify-content: center; }
+    nav { justify-content: space-between; }
 }
