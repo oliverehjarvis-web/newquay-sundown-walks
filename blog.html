@@ -18,6 +18,9 @@
             </div>
             <div class="nav-right">
                 <button id="themeToggle" class="theme-toggle-btn"><span class="icon">🌙</span></button>
+                
+                <button class="hamburger" aria-label="Open Menu">☰</button>
+
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="index.html#services">Adventures</a></li>
@@ -155,6 +158,29 @@
             resizeCanvas(); initStars(); 
             if (document.body.classList.contains('dark-mode')) animate();
             window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
+        }
+
+        // --- MOBILE MENU LOGIC ---
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links li a');
+
+        if(hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if(navLinks.classList.contains('active')) {
+                    hamburger.textContent = '✕';
+                } else {
+                    hamburger.textContent = '☰';
+                }
+            });
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    hamburger.textContent = '☰';
+                });
+            });
         }
     </script>
 </body>
