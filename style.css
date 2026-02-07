@@ -295,17 +295,6 @@ footer { background: #0B131E; color: #888; text-align: center; padding: 60px 20p
 
 #starsCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem; }
-    .service-card-large { flex-direction: column !important; gap: 0; overflow: hidden; }
-    .service-img-wrapper img { height: 250px; }
-    .trust-grid { grid-template-columns: 1fr 1fr; }
-    .nav-links { display: none; } 
-    .pricing-card.featured { transform: scale(1); }
-    header { text-align: center; }
-    nav { justify-content: space-between; }
-}
 
 /* =========================================
    9. BLOG STYLES
@@ -405,3 +394,81 @@ body.dark-mode .blog-content h3 { color: var(--gold); }
 }
 .blog-search-wrapper input:focus { outline: none; }
 .search-icon { font-size: 1.5rem; opacity: 0.6; }
+
+
+/* =========================================
+   HAMBURGER & MOBILE
+   ========================================= */
+
+.hamburger {
+    display: none; /* Hidden on Desktop */
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-main);
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 0;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    /* 1. Layout & Spacing */
+    section { padding: 60px 0; } 
+    
+    .hero h1 { font-size: 2.5rem; }
+    .hero-container { padding: 80px 20px; }
+    
+    /* 2. Navigation (Slide-Out Menu) */
+    .hamburger { display: block; }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Hidden off-screen */
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        background: var(--bg-color); 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        display: flex; /* Override desktop layout */
+        border-left: 1px solid var(--glass-border);
+    }
+
+    .nav-links.active { right: 0; /* Slide in */ }
+    
+    .nav-links li { margin: 20px 0; width: 100%; text-align: center; }
+    .nav-links a { font-size: 1.5rem; display: block; padding: 10px; }
+
+    /* 3. Service Cards */
+    .service-card-large { 
+        flex-direction: column !important; 
+        gap: 0; 
+        padding: 0; 
+        overflow: hidden;
+    }
+    .service-img-wrapper { width: 100%; height: 250px; }
+    .service-content { padding: 30px 20px; }
+
+    /* 4. Grids & Pricing */
+    .pricing-card { width: 100%; max-width: none; margin-bottom: 20px; }
+    .pricing-card.featured { transform: scale(1); border-width: 4px; }
+    
+    .trust-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .contact-method { flex-direction: column; text-align: center; gap: 10px; }
+
+    /* 5. Floating Buttons Position */
+    .floating-book-btn { bottom: 20px; right: 20px; padding: 10px 20px; font-size: 0.9rem; }
+    .whatsapp-float { bottom: 80px; right: 20px; width: 50px; height: 50px; }
+    
+    /* 6. Header Adjustments */
+    header { padding: 10px 0; }
+    .logo-img { height: 40px; }
+    .nav-right { flex: 1; justify-content: flex-end; }
+}
