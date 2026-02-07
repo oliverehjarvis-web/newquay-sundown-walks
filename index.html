@@ -19,6 +19,8 @@
 
     <canvas id="starsCanvas"></canvas>
     
+    <div class="menu-overlay"></div>
+
     <a href="#contact" id="floatingBookBtn" class="floating-book-btn">
         <span class="btn-icon">📅</span>
         <span class="btn-text">Book Now</span>
@@ -421,28 +423,40 @@
         if (document.body.classList.contains('dark-mode')) animate();
         window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
 
-        // --- 5. MOBILE MENU LOGIC ---
+
+        // --- 5. MOBILE MENU LOGIC (Updated with Overlay & Scroll Lock) ---
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.menu-overlay');
         const links = document.querySelectorAll('.nav-links li a');
+        const body = document.body;
+
+        function toggleMenu() {
+            const isActive = navLinks.classList.contains('active');
+            
+            if (!isActive) {
+                // Open Menu
+                navLinks.classList.add('active');
+                overlay.classList.add('active');
+                hamburger.textContent = '✕';
+                body.classList.add('no-scroll');
+            } else {
+                // Close Menu
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                hamburger.textContent = '☰';
+                body.classList.remove('no-scroll');
+            }
+        }
 
         if(hamburger) {
-            // Toggle Menu
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                
-                if(navLinks.classList.contains('active')) {
-                    hamburger.textContent = '✕';
-                } else {
-                    hamburger.textContent = '☰';
-                }
-            });
+            hamburger.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
 
-            // Close menu when a link is clicked
+            // Close when clicking a link
             links.forEach(link => {
                 link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    hamburger.textContent = '☰';
+                    if(navLinks.classList.contains('active')) toggleMenu();
                 });
             });
         }
