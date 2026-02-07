@@ -41,6 +41,9 @@
                 <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
                     <span class="icon">🌙</span>
                 </button>
+                
+                <button class="hamburger" aria-label="Open Menu">☰</button>
+
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Adventures</a></li>
@@ -79,7 +82,7 @@
                         <div class="service-icon">🌙</div>
                         <h3>The Sundown Walk</h3>
                         <p class="service-tag">Mon - Fri | Evenings</p>
-                        <p>Our signature service. Perfect for shift workers or high-energy dogs needing that final run-out before bed. We explore safe, lit routes and local beaches to ensure your dog returns happy, tired, and ready to sleep.</p>
+                        <p>Our signature service. Perfect for shift workers or high-energy dogs needing that final run-out before bed. We explore safe, lit routes and local beaches to ensure your dog is returned happy, tired, and ready to sleep.</p>
                         <ul class="feature-list">
                             <li>60-Minute GPS Tracked Walk</li>
                             <li>Safe, Light-Up Collars Provided</li>
@@ -417,6 +420,32 @@
         resizeCanvas(); initStars(); 
         if (document.body.classList.contains('dark-mode')) animate();
         window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
+
+        // --- 5. MOBILE MENU LOGIC ---
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links li a');
+
+        if(hamburger) {
+            // Toggle Menu
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                
+                if(navLinks.classList.contains('active')) {
+                    hamburger.textContent = '✕';
+                } else {
+                    hamburger.textContent = '☰';
+                }
+            });
+
+            // Close menu when a link is clicked
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    hamburger.textContent = '☰';
+                });
+            });
+        }
     </script>
 </body>
 </html>
