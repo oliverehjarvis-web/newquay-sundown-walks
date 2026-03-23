@@ -3,12 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional dog care in Newquay. Specialising in evening walks and full-day weekend adventure daycare.">
-    <title>Dog Walker & Weekend Daycare Newquay | Newquay Sundown Walks</title>
-    
+    <meta name="description" content="Professional dog walking, weekend daycare & evening pet sitting in Newquay, Cornwall. Fully insured, DBS checked. From £16. Book your free meet & greet today.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Newquay Sundown Walks">
+    <meta name="geo.region" content="GB-CON">
+    <meta name="geo.placename" content="Newquay">
+    <title>Dog Walking, Weekend Daycare & Pet Sitting Newquay | Newquay Sundown Walks</title>
+
+    <link rel="canonical" href="https://newquaysundownwalks.co.uk/">
     <link rel="icon" href="images/sundown-walks-logo.webp">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-    
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://newquaysundownwalks.co.uk/">
+    <meta property="og:title" content="Dog Walking, Weekend Daycare & Pet Sitting Newquay | Newquay Sundown Walks">
+    <meta property="og:description" content="Professional dog walking, weekend daycare & evening pet sitting in Newquay, Cornwall. Fully insured, DBS checked, canine first aid certified.">
+    <meta property="og:image" content="https://newquaysundownwalks.co.uk/images/collie-on-beach.webp">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dog Walking, Weekend Daycare & Pet Sitting Newquay | Newquay Sundown Walks">
+    <meta name="twitter:description" content="Professional dog walking, weekend daycare & evening pet sitting in Newquay, Cornwall.">
+    <meta name="twitter:image" content="https://newquaysundownwalks.co.uk/images/collie-on-beach.webp">
+
+    <!-- Structured Data: LocalBusiness -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://newquaysundownwalks.co.uk/#business",
+        "name": "Newquay Sundown Walks",
+        "description": "Professional dog walking, weekend daycare, and evening pet sitting service in Newquay, Cornwall.",
+        "url": "https://newquaysundownwalks.co.uk",
+        "telephone": "+447743019202",
+        "email": "hello@newquaysundownwalks.co.uk",
+        "image": "https://newquaysundownwalks.co.uk/images/sundown-walks-logo.webp",
+        "priceRange": "££",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Newquay",
+            "addressRegion": "Cornwall",
+            "addressCountry": "GB"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 50.412,
+            "longitude": -5.076
+        },
+        "areaServed": {
+            "@type": "City",
+            "name": "Newquay"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "17:00",
+                "closes": "22:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Saturday","Sunday"],
+                "opens": "09:00",
+                "closes": "22:00"
+            }
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Dog Care Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Pop-In Visit",
+                        "description": "15-minute check-in with garden let-out, feeding, and cuddles.",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "10.00",
+                            "priceCurrency": "GBP"
+                        }
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Evening & Weekend Dog Walking",
+                        "description": "Professional GPS-tracked dog walking, minimum 60 minutes, with rinse and dry included.",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "16.00",
+                            "priceCurrency": "GBP"
+                        }
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Weekend Daycare",
+                        "description": "Full day dog daycare from 09:00 to 16:30, with adventures to Bodmin Moor and Cornish beaches.",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "30.00",
+                            "priceCurrency": "GBP"
+                        }
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Evening Pet Sitting",
+                        "description": "In-accommodation pet sitting for holiday makers, perfect for evening restaurant visits in Newquay.",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "20.00",
+                            "priceCurrency": "GBP",
+                            "unitText": "per hour"
+                        }
+                    }
+                }
+            ]
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "7",
+            "bestRating": "5"
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Sue Lake"},
+                "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+                "reviewBody": "Oli is brilliant at his job and my dog loves him. He is really flexible and will walk my dog at short notice. Highly recommend."
+            },
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Radram"},
+                "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+                "reviewBody": "Been walking our dog Rupert for over 2 years now... especially enjoy the app updates! I can highly recommend."
+            },
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Janet Elston"},
+                "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+                "reviewBody": "Meg absolutely loves her day with Oli and I always have a peaceful evening as she snoozes..."
+            },
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Vivian Swift"},
+                "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+                "reviewBody": "Oli and the team treat my mad staffy like one of the family. Could not recommend them highly enough..."
+            },
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Anna Lomas"},
+                "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+                "reviewBody": "We recently visited Cornwall... Oliver was really quick at responding and was very flexible... He kept us updated..."
+            },
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Janey Willis"},
+                "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+                "reviewBody": "Riley absolutely loved Sophie and we could tell he had a great time. Absolutely fabulous service."
+            },
+            {
+                "@type": "Review",
+                "author": {"@type": "Person", "name": "Philip Bickle"},
+                "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+                "reviewBody": "Excellent dog sitting service while we were at Rick Stein's. Well worth it!"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Where do you go for Daycare?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We vary our locations to keep it exciting! We visit Bodmin Moor, expansive woodlands, and dog-friendly beaches across Cornwall depending on the weather."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you take unneutered dogs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We assess each dog individually during our meet & greet. Safety and pack harmony are our top priorities."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What if it rains?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We walk rain or shine! We have professional drying equipment to ensure your dog is returned as clean and dry as possible."
+                }
+            }
+        ]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
@@ -34,7 +240,7 @@
     </a>
 
     <header>
-        <nav>
+        <nav role="navigation" aria-label="Main navigation">
             <div class="logo-container">
                 <img src="images/sundown-walks-logo.webp" alt="Newquay Sundown Walks Logo" class="logo-img">
             </div>
@@ -63,7 +269,7 @@
                 <div class="hero-content">
                     <span class="hero-tag">Newquay's Premier Dog Service</span>
                     <h1>Adventures Beyond The Sunset</h1>
-                    <p class="subtitle">From evening walks to full-day weekend expeditions across Cornwall. We treat your dog like family.</p>
+                    <p class="subtitle">Evening walks, weekend adventures & holiday pet sitting across Newquay & Cornwall. We treat your dog like family.</p>
                     <div class="hero-buttons">
                         <a href="#pricing" class="cta-button primary">View Prices</a>
                         <a href="#services" class="cta-button secondary">Explore Services</a>
@@ -72,50 +278,67 @@
             </div>
         </section>
 
-        <section id="services">
+        <section id="services" aria-label="Our dog care services">
             <div class="container">
                 <div class="section-header">
                     <h2>Our Services</h2>
-                    <p class="section-intro">Whether it's a peaceful evening stroll or a wild weekend on the moors, we have the perfect adventure for your dog.</p>
+                    <p class="section-intro">From peaceful evening strolls to wild weekend adventures and holiday pet sitting — we have the perfect care for your dog.</p>
                 </div>
                 <div class="service-card-large premium-glass">
                     <div class="service-content">
                         <div class="service-icon">🌙</div>
-                        <h3>The Sundown Walk</h3>
-                        <p class="service-tag">Mon - Fri | Evenings</p>
-                        <p>Our signature service. Perfect for shift workers or high-energy dogs needing that final run-out before bed. We explore safe, lit routes and local beaches to ensure your dog is returned happy, tired, and ready to sleep.</p>
+                        <h3>Evening & Weekend Dog Walking</h3>
+                        <p class="service-tag">Evenings & Weekends</p>
+                        <p>Our signature service. Perfect for shift workers, busy weekends, or high-energy dogs needing that extra run-out. We explore safe, scenic routes and local beaches to ensure your dog is returned happy, tired, and ready to rest.</p>
                         <ul class="feature-list">
-                            <li>60-Minute GPS Tracked Walk</li>
+                            <li>Minimum 60-Minute GPS Tracked Walk</li>
                             <li>Safe, Light-Up Collars Provided</li>
                             <li>Rinse & Towel Dry on Return</li>
-                            <li>Photo Updates</li>
+                            <li>Photo Updates Every Walk</li>
                         </ul>
                     </div>
                     <div class="service-img-wrapper">
-                        <img src="images/dogs-on-footpath.webp" alt="Dogs walking in the evening" loading="lazy">
+                        <img src="images/dogs-on-footpath.webp" alt="Two dogs enjoying an evening walk along a coastal footpath in Newquay" loading="lazy">
                     </div>
                 </div>
                 <div class="service-card-large premium-glass reverse-layout">
                     <div class="service-content">
                         <div class="service-icon">🌲</div>
-                        <h3>Weekend Explorer Daycare</h3>
-                        <p class="service-tag">Sat - Sun | Full Day</p>
+                        <h3>Weekend Daycare</h3>
+                        <p class="service-tag">Sat - Sun | 09:00 – 16:30</p>
                         <p>Why leave them at home? Join our pack for a full day of adventure! We leave the local parks behind and head out to explore the best of Cornwall, from the wild peaks of Bodmin Moor to the golden sands of the coast.</p>
                         <ul class="feature-list">
-                            <li>All-Day Adventure</li>
+                            <li>Full Day 09:00 – 16:30</li>
                             <li>Hiking, Swimming & Training Games</li>
                             <li>Pick-up & Drop-off Included</li>
                             <li>Small, Friendly Pack Environment</li>
                         </ul>
                     </div>
                     <div class="service-img-wrapper">
-                        <img src="images/dogs-swimming-in-lake.webp" alt="Dogs swimming on Bodmin Moor" loading="lazy">
+                        <img src="images/dogs-swimming-in-lake.webp" alt="Dogs swimming in a lake on Bodmin Moor during weekend daycare adventure" loading="lazy">
+                    </div>
+                </div>
+                <div class="service-card-large premium-glass">
+                    <div class="service-content">
+                        <div class="service-icon">🏖️</div>
+                        <h3>Evening Pet Sitting</h3>
+                        <p class="service-tag">Perfect for Holiday Makers</p>
+                        <p>Visiting Newquay and want to enjoy an evening out? We come to your holiday let, hotel, or accommodation so your dog is never left alone. Whether it's dinner at a restaurant or an evening on the town, we'll keep your furry friend happy, safe, and entertained until you return.</p>
+                        <ul class="feature-list">
+                            <li>In-Accommodation Pet Sitting</li>
+                            <li>Cuddles, Play & Short Walks</li>
+                            <li>Perfect for Restaurant Evenings</li>
+                            <li>Flexible Hours to Suit You</li>
+                        </ul>
+                    </div>
+                    <div class="service-img-wrapper">
+                        <img src="images/collie-playing-with-toys-indoors.webp" alt="Collie relaxing indoors with toys during an evening pet sitting session" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="trust" class="trust-section">
+        <section id="trust" class="trust-section" aria-label="Trust and safety credentials">
             <div class="container">
                 <div class="trust-header">
                     <h2>Peace of Mind</h2>
@@ -124,52 +347,49 @@
                 <div class="trust-grid">
                     <div class="trust-item premium-glass">
                         <div class="trust-icon">🛡️</div>
-                        <h4>Fully Insured</h4>
+                        <h3>Fully Insured</h3>
                         <p>Public liability & key holding.</p>
                     </div>
                     <div class="trust-item premium-glass">
                         <div class="trust-icon">👮</div>
-                        <h4>DBS Checked</h4>
+                        <h3>DBS Checked</h3>
                         <p>Clear background checks.</p>
                     </div>
                     <div class="trust-item premium-glass">
                         <div class="trust-icon">⛑️</div>
-                        <h4>Canine First Aid</h4>
+                        <h3>Canine First Aid</h3>
                         <p>Certified for emergencies.</p>
                     </div>
                     <div class="trust-item premium-glass">
                         <div class="trust-icon">🛰️</div>
-                        <h4>GPS Tracked</h4>
+                        <h3>GPS Tracked</h3>
                         <p>Real-time updates on walks.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="gallery">
+        <section id="gallery" aria-label="Photo gallery of our dog walking adventures">
             <div class="container">
                 <div class="section-header">
                     <h2>The Pack Gallery</h2>
                 </div>
                 <div class="photo-grid">
-                    <img src="images/collie-running-in-snow.webp" alt="Dog running" class="gallery-img">
-                    <img src="images/two-dogs-sitting-for-photo.webp" alt="Dogs sitting" class="gallery-img">
-                    <img src="images/dogs-playing-on-beach.webp" alt="Beach play" class="gallery-img">
-                    <img src="images/staffie-in-stream.webp" alt="Dog in stream" class="gallery-img">
-                </div>
-                <div style="text-align: center; margin-top: 20px;">
-                    <a href="https://wa.me/qr/MWIQHF6UPTQKC1" class="text-link">Join the fun on Instagram →</a>
+                    <img src="images/collie-running-in-snow.webp" alt="Border collie running through snow on a winter walk in Cornwall" class="gallery-img" loading="lazy">
+                    <img src="images/two-dogs-sitting-for-photo.webp" alt="Two well-behaved dogs sitting for a photo after their walk in Newquay" class="gallery-img" loading="lazy">
+                    <img src="images/dogs-playing-on-beach.webp" alt="Dogs playing together on a Newquay beach during a group walk" class="gallery-img" loading="lazy">
+                    <img src="images/staffie-in-stream.webp" alt="Staffordshire bull terrier cooling off in a Cornish stream" class="gallery-img" loading="lazy">
                 </div>
             </div>
         </section>
 
-        <section id="pricing">
+        <section id="pricing" aria-label="Service pricing">
             <div class="container">
                 <div class="section-header">
                     <h2>Simple, Transparent Pricing</h2>
                     <p class="section-intro">Invest in your dog's happiness.</p>
                 </div>
-                
+
                 <div class="pricing-container">
                     <div class="pricing-card premium-glass">
                         <h3>Pop-In Visit</h3>
@@ -186,37 +406,50 @@
                     </div>
                     <div class="pricing-card premium-glass featured">
                         <div class="badge">Most Popular</div>
-                        <h3>Sundown Walk</h3>
-                        <div class="price">£16 - £18</div>
-                        <p class="price-sub">Per Walk</p>
+                        <h3>Evening & Weekend Walking</h3>
+                        <div class="price">£16</div>
+                        <p class="price-sub">Minimum 60 Minutes</p>
                         <hr>
                         <ul>
-                            <li><strong>£16</strong> for Regulars / Multi-dog</li>
-                            <li><strong>£18</strong> for Ad-hoc Single Walks</li>
-                            <li>60 Minute Group Walk</li>
+                            <li>60+ Minute Walk</li>
+                            <li>Evenings & Weekends</li>
+                            <li>GPS Tracked & Photo Updates</li>
                             <li>Rinse & Dry Included</li>
                         </ul>
                         <a href="#contact" class="btn-filled">Book Now</a>
                     </div>
                     <div class="pricing-card premium-glass">
-                        <div class="badge new">New Service</div>
-                        <h3>Weekend Adventure</h3>
-                        <div class="price">£35</div>
-                        <p class="price-sub">Full Day</p>
+                        <h3>Weekend Daycare</h3>
+                        <div class="price">£30</div>
+                        <p class="price-sub">09:00 – 16:30</p>
                         <hr>
                         <ul>
-                            <li>Full Day Excursion</li>
+                            <li>Full Day Adventure</li>
                             <li>Bodmin Moor / Beaches</li>
                             <li>Transport Included</li>
                             <li>Socialisation & Training</li>
                         </ul>
                         <a href="#contact" class="btn-outline">Join The Pack</a>
                     </div>
+                    <div class="pricing-card premium-glass">
+                        <div class="badge new">New Service</div>
+                        <h3>Evening Pet Sitting</h3>
+                        <div class="price">£20</div>
+                        <p class="price-sub">Per Hour</p>
+                        <hr>
+                        <ul>
+                            <li>Perfect for Holiday Makers</li>
+                            <li>In-Accommodation Sitting</li>
+                            <li>Evening Restaurant Cover</li>
+                            <li>Cuddles, Play & Walks</li>
+                        </ul>
+                        <a href="#contact" class="btn-outline">Book Now</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="reviews">
+        <section id="reviews" aria-label="Customer reviews">
             <div class="container">
                 <h2>What Owners Say</h2>
                 <div class="review-showcase premium-glass">
@@ -234,20 +467,20 @@
             </div>
         </section>
 
-        <section id="faq">
+        <section id="faq" aria-label="Frequently asked questions">
             <div class="container">
                 <h2>FAQ</h2>
                 <div class="faq-grid">
                     <div class="faq-item premium-glass">
-                        <h4>Where do you go for Daycare?</h4>
+                        <h3>Where do you go for Daycare?</h3>
                         <p>We vary our locations to keep it exciting! We visit Bodmin Moor, expansive woodlands, and dog-friendly beaches across Cornwall depending on the weather.</p>
                     </div>
                     <div class="faq-item premium-glass">
-                        <h4>Do you take unneutered dogs?</h4>
+                        <h3>Do you take unneutered dogs?</h3>
                         <p>We assess each dog individually during our meet & greet. Safety and pack harmony are our top priorities.</p>
                     </div>
                     <div class="faq-item premium-glass">
-                        <h4>What if it rains?</h4>
+                        <h3>What if it rains?</h3>
                         <p>We walk rain or shine! We have professional drying equipment to ensure your dog is returned as clean and dry as possible.</p>
                     </div>
                 </div>
@@ -292,13 +525,11 @@
         <div class="container">
             <div class="footer-content">
                 <img src="images/sundown-walks-logo.webp" alt="Logo" class="footer-logo">
-                <p>&copy; 2025 Newquay Sundown Walks. <br>Evening Walks & Weekend Adventures.</p>
+                <p>&copy; 2026 Newquay Sundown Walks. <br>Evening Walks, Weekend Adventures & Holiday Pet Sitting.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    
     <script>
         // --- BLOG RENDER LOGIC REMOVED ---
 

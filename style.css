@@ -48,8 +48,8 @@ body.no-scroll {
     width: 100%;
 }
 
-h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--gold); margin-top: 0; }
-p { line-height: 1.6; margin-bottom: 1.5rem; color: var(--text-muted); }
+h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--gold); margin-top: 0; letter-spacing: -0.02em; }
+p { line-height: 1.7; margin-bottom: 1.5rem; color: var(--text-muted); }
 body.dark-mode p { color: var(--text-muted); }
 
 a { text-decoration: none; color: inherit; }
@@ -60,7 +60,7 @@ img { max-width: 100%; height: auto; border-radius: var(--radius); }
    ========================================= */
 section {
     width: 100%;
-    padding: 100px 0;
+    padding: 120px 0;
     position: relative;
     z-index: 2;
 }
@@ -71,7 +71,8 @@ section {
     padding: 0 20px;
 }
 
-.section-header { text-align: center; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; }
+.section-header { text-align: center; margin-bottom: 80px; max-width: 700px; margin-left: auto; margin-right: auto; }
+.section-intro { max-width: 600px; margin-left: auto; margin-right: auto; }
 
 /* =========================================
    3. UI COMPONENTS (Buttons & Glass)
@@ -179,8 +180,8 @@ nav {
 .hero {
     min-height: 85vh;
     display: flex; align-items: center; justify-content: center; text-align: center;
-    background: linear-gradient(rgba(13, 27, 42, 0.5), rgba(13, 27, 42, 0.3)), url('images/collie-on-beach.webp');
-    background-size: cover; background-position: center; background-attachment: fixed;
+    background: linear-gradient(rgba(13, 27, 42, 0.4), rgba(13, 27, 42, 0.6)), url('images/collie-on-beach.webp');
+    background-size: cover; background-position: center;
     color: white; 
     padding: 0;
 }
@@ -226,18 +227,18 @@ body.dark-mode .service-tag { color: #8baec9; }
    ========================================= */
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
 .trust-icon { font-size: 2.5rem; margin-bottom: 15px; }
-.trust-item h4 { color: var(--text-main); margin-bottom: 5px; }
+.trust-item h3 { color: var(--text-main); margin-bottom: 5px; font-size: 1.1rem; }
 
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 40px; }
-.gallery-img { width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s; }
+.gallery-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; transition: transform 0.3s; border-radius: var(--radius); box-shadow: var(--shadow); }
 .gallery-img:hover { transform: scale(1.02); }
 .text-link { color: var(--gold); font-weight: 700; border-bottom: 2px solid var(--gold); }
 
 /* =========================================
    7. PRICING
    ========================================= */
-.pricing-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
-.pricing-card { flex: 1; min-width: 300px; max-width: 350px; text-align: center; position: relative; background: var(--glass-bg); }
+.pricing-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 40px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+.pricing-card { text-align: center; position: relative; background: var(--glass-bg); }
 .pricing-card.featured { transform: scale(1.05); border: 2px solid var(--gold); z-index: 3; }
 
 .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--gold); color: white; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
@@ -282,7 +283,7 @@ body.dark-mode .review-author { color: #8baec9; }
 .review-controls button:hover { background: var(--gold); border-color: var(--gold); color: white; }
 
 .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.faq-item h4 { color: var(--text-main); margin-bottom: 10px; }
+.faq-item h3 { color: var(--text-main); margin-bottom: 10px; font-size: 1.2rem; }
 .faq-item p { font-size: 0.95rem; margin: 0; }
 
 .contact-box { text-align: center; max-width: 700px; margin: 0 auto; }
@@ -299,81 +300,6 @@ footer { background: #0B131E; color: #888; text-align: center; padding: 60px 20p
 .footer-logo { height: 60px; margin-bottom: 20px; opacity: 0.8; }
 
 #starsCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-
-
-/* =========================================
-   9. BLOG STYLES
-   ========================================= */
-.blog-hero {
-    min-height: 40vh;
-    background-image: linear-gradient(rgba(13, 27, 42, 0.6), rgba(13, 27, 42, 0.6)), url('images/two-dogs-in-field.webp');
-}
-
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.blog-card {
-    padding: 0;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-.blog-card:hover { transform: translateY(-8px); }
-
-.blog-img-wrapper {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-}
-.blog-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0;
-    transition: transform 0.5s ease;
-}
-.blog-card:hover .blog-img-wrapper img { transform: scale(1.1); }
-
-.blog-category {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--gold);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 15px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.blog-content {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.blog-date { font-size: 0.85rem; color: #888; margin-bottom: 10px; display: block; }
-
-.blog-content h3 { font-size: 1.4rem; margin-bottom: 15px; line-height: 1.3; color: var(--text-main); }
-.blog-content p { font-size: 0.95rem; flex-grow: 1; }
-
-body.dark-mode .blog-content h3 { color: var(--gold); }
-
-.blog-search-wrapper {
-    display: flex; align-items: center; max-width: 500px; margin: 40px auto 0 auto;
-    padding: 10px 20px !important; background: rgba(255,255,255,0.9); border-radius: 50px;
-}
-.blog-search-wrapper input {
-    border: none; background: transparent; width: 100%; font-size: 1.1rem; color: var(--text-main); font-family: 'Nunito';
-}
-.blog-search-wrapper input:focus { outline: none; }
-.search-icon { font-size: 1.5rem; opacity: 0.6; }
 
 
 /* =========================================
@@ -453,7 +379,8 @@ body.dark-mode .blog-content h3 { color: var(--gold); }
     .service-content { padding: 30px 20px; }
 
     /* 4. Grids & Components */
-    .pricing-card { width: 100%; max-width: none; margin-bottom: 20px; }
+    .pricing-container { grid-template-columns: 1fr; gap: 20px; }
+    .pricing-card { width: 100%; max-width: none; }
     .pricing-card.featured { transform: scale(1); border-width: 4px; }
     .trust-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
     .faq-grid { grid-template-columns: 1fr; }
@@ -466,4 +393,11 @@ body.dark-mode .blog-content h3 { color: var(--gold); }
     header { padding: 10px 0; }
     .logo-img { height: 40px; }
     .nav-right { flex: 1; justify-content: flex-end; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 2rem; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .review-quote { font-size: 1.1rem; }
+    .subtitle { font-size: 1.1rem; }
 }
