@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional evening & weekend dog walking in Newquay, Cornwall. GPS tracked, minimum 60 minutes, rinse & dry included. Fully insured. Book today.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Newquay Sundown Walks">
+    <meta name="geo.region" content="GB-CON">
+    <meta name="geo.placename" content="Newquay">
+    <title>Evening & Weekend Dog Walking in Newquay | From £16 | Newquay Sundown Walks</title>
+
+    <link rel="canonical" href="https://newquaysundownwalks.co.uk/dog-walking-newquay.html">
+    <link rel="icon" href="images/sundown-walks-logo.webp">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://newquaysundownwalks.co.uk/dog-walking-newquay.html">
+    <meta property="og:title" content="Evening & Weekend Dog Walking in Newquay | From £16 | Newquay Sundown Walks">
+    <meta property="og:description" content="Professional evening & weekend dog walking in Newquay, Cornwall. GPS tracked, minimum 60 minutes, rinse & dry included. Fully insured.">
+    <meta property="og:image" content="https://newquaysundownwalks.co.uk/images/dogs-on-footpath.webp">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Evening & Weekend Dog Walking in Newquay | From £16 | Newquay Sundown Walks">
+    <meta name="twitter:description" content="Professional evening & weekend dog walking in Newquay, Cornwall. GPS tracked, minimum 60 minutes, rinse & dry included.">
+    <meta name="twitter:image" content="https://newquaysundownwalks.co.uk/images/dogs-on-footpath.webp">
+
+    <!-- Structured Data: Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Evening & Weekend Dog Walking in Newquay",
+        "description": "Professional GPS-tracked dog walking service in Newquay, Cornwall. Minimum 60-minute walks with rinse and dry included. Available evenings and weekends.",
+        "provider": {
+            "@type": "LocalBusiness",
+            "@id": "https://newquaysundownwalks.co.uk/#business",
+            "name": "Newquay Sundown Walks",
+            "telephone": "+447743019202",
+            "email": "hello@newquaysundownwalks.co.uk"
+        },
+        "areaServed": {
+            "@type": "City",
+            "name": "Newquay"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "16.00",
+            "priceCurrency": "GBP",
+            "description": "Minimum 60-minute GPS-tracked walk with rinse and dry"
+        },
+        "serviceType": "Dog Walking"
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What routes do you take?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We vary routes including local beaches, coastal paths, and quiet lanes around Newquay to keep things interesting for your dog."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you walk in the rain?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we walk rain or shine. We carry professional drying equipment so your dog is returned as clean and dry as possible."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can you walk reactive dogs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We assess each dog individually at the free meet & greet. We have experience working with reactive dogs and will tailor the walk to your dog's needs."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://newquaysundownwalks.co.uk/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Dog Walking",
+                "item": "https://newquaysundownwalks.co.uk/dog-walking-newquay.html"
+            }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="starsCanvas"></canvas>
+
+    <div class="menu-overlay"></div>
+
+    <a href="/contact.html" class="floating-book-btn">
+        <span class="btn-icon">📅</span>
+        <span class="btn-text">Book Now</span>
+    </a>
+    <a href="https://wa.me/qr/MWIQHF6UPTQKC1" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.826.735 5.479 2.016 7.786L0 32l8.433-2.015A15.93 15.93 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.334c-2.568 0-5.053-.739-7.193-2.133l-.516-.306-5.345 1.279 1.279-5.345-.306-.516A13.264 13.264 0 012.666 16c0-7.364 5.97-13.334 13.334-13.334S29.334 8.636 29.334 16 23.364 29.334 16 29.334z"/>
+            <path d="M23.567 19.433c-.4-.2-2.367-1.167-2.734-1.3-.366-.134-.633-.2-.9.2-.266.4-1.033 1.3-1.267 1.567-.233.266-.466.3-.866.1-.4-.2-1.687-.622-3.213-1.98-1.188-1.058-1.99-2.365-2.223-2.765-.234-.4-.025-.616.175-.816.18-.18.4-.466.6-.7.2-.233.267-.4.4-.667.133-.266.067-.5-.033-.7-.1-.2-.9-2.167-1.233-2.967-.324-.778-.654-.673-.9-.686-.233-.012-.5-.015-.767-.015s-.7.1-1.067.5c-.366.4-1.4 1.367-1.4 3.333s1.434 3.867 1.634 4.133c.2.267 2.833 4.325 6.866 6.067.959.413 1.708.66 2.292.845.963.306 1.839.263 2.531.159.772-.115 2.367-.967 2.7-1.9.333-.933.333-1.733.233-1.9-.1-.167-.367-.267-.767-.467z"/>
+        </svg>
+    </a>
+
+    <header>
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="/" class="logo-container">
+                <img src="images/sundown-walks-logo.webp" alt="Newquay Sundown Walks Logo" class="logo-img">
+            </a>
+            <div class="nav-right">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <span class="icon">🌙</span>
+                </button>
+                <button class="hamburger" aria-label="Open Menu">☰</button>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/dog-walking-newquay.html" class="nav-active">Dog Walking</a></li>
+                    <li><a href="/weekend-dog-daycare-newquay.html">Daycare</a></li>
+                    <li><a href="/pet-sitting-newquay.html">Pet Sitting</a></li>
+                    <li><a href="/reviews.html">Reviews</a></li>
+                    <li><a href="/contact.html" class="nav-cta">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero" style="background-image: url('images/dogs-on-footpath.webp');">
+            <div class="container">
+                <h1>Evening & Weekend Dog Walking in Newquay</h1>
+            </div>
+        </section>
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <div class="container">
+                <ol>
+                    <li><a href="/">Home</a></li>
+                    <li aria-current="page">Dog Walking</li>
+                </ol>
+            </div>
+        </nav>
+
+        <!-- Service Detail -->
+        <section aria-label="Dog walking service details">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Professional Dog Walking When You Need It Most</h2>
+                    <p>Our evening and weekend dog walking service is designed for people who need reliable, professional care outside of traditional hours. Whether you're a shift worker getting home late, busy at the weekends, or have a high-energy dog that needs that extra run-out — we've got you covered.</p>
+
+                    <h3>Who Is It For?</h3>
+                    <ul class="feature-list">
+                        <li><strong>Shift workers</strong> — come home to a happy, tired dog after a long shift</li>
+                        <li><strong>Busy weekends</strong> — errands, family commitments, or just need a break</li>
+                        <li><strong>High-energy dogs</strong> — breeds that need more than a quick trip round the block</li>
+                        <li><strong>Holiday makers</strong> — want a local walk while you explore Newquay</li>
+                    </ul>
+
+                    <h3>What's Included</h3>
+                    <ul class="feature-list">
+                        <li><strong>Minimum 60-minute walk</strong> — we never cut corners on time</li>
+                        <li><strong>GPS tracked</strong> — see exactly where your dog has been via our tracking app</li>
+                        <li><strong>Light-up collars provided</strong> — for safe evening walks in low light</li>
+                        <li><strong>Rinse & towel dry</strong> — your dog comes home clean, not muddy</li>
+                        <li><strong>Photo updates</strong> — pictures from every walk so you never miss a moment</li>
+                    </ul>
+
+                    <h3>How It Works</h3>
+                    <ol class="steps-list">
+                        <li><strong>Free Meet & Greet</strong> — We visit you and your dog at home. No commitment, just a chat to see if we're the right fit.</li>
+                        <li><strong>Book Your Walks</strong> — Set up a regular schedule or book ad-hoc walks as needed. We're flexible.</li>
+                        <li><strong>We Collect & Walk</strong> — We pick your dog up, head out for a minimum 60-minute adventure, and return them happy and tired.</li>
+                        <li><strong>Updates & Return</strong> — You receive GPS tracking data and photos. Your dog is rinsed and dried before we leave.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section aria-label="Dog walking pricing">
+            <div class="container">
+                <div class="pricing-container" style="max-width: 480px; margin: 0 auto;">
+                    <div class="pricing-card premium-glass featured">
+                        <div class="badge">Most Popular</div>
+                        <h3>Evening & Weekend Dog Walking</h3>
+                        <div class="price">£16</div>
+                        <p class="price-sub">Minimum 60 Minutes</p>
+                        <hr>
+                        <ul>
+                            <li>60+ Minute GPS Tracked Walk</li>
+                            <li>Evenings & Weekends</li>
+                            <li>Light-Up Collars Provided</li>
+                            <li>Rinse & Towel Dry on Return</li>
+                            <li>Photo Updates Every Walk</li>
+                        </ul>
+                        <a href="/contact.html" class="btn-filled">Book a Free Meet & Greet</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Where We Walk -->
+        <section aria-label="Walking locations in Newquay">
+            <div class="container">
+                <div class="service-card-large premium-glass">
+                    <div class="service-content">
+                        <h2>Where We Walk</h2>
+                        <p>We know Newquay and the surrounding area inside out. Our walks take in some of the best scenery Cornwall has to offer, and we vary routes to keep things interesting for your dog.</p>
+                        <ul class="feature-list">
+                            <li><strong>Fistral Beach</strong> — wide open sands, perfect for off-lead runs</li>
+                            <li><strong>The Gannel Estuary</strong> — calm, scenic walks along the water</li>
+                            <li><strong>Colan & Porth</strong> — quiet lanes and coastal paths away from the crowds</li>
+                            <li><strong>Local woodland routes</strong> — sheltered trails ideal for rainy evenings</li>
+                        </ul>
+                        <a href="/areas-we-cover.html" class="cta-button secondary">See All Areas We Cover &rarr;</a>
+                    </div>
+                    <div class="service-img-wrapper">
+                        <img src="images/fistral.webp" alt="Fistral Beach in Newquay — one of our regular dog walking routes" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs -->
+        <section id="faq" aria-label="Dog walking frequently asked questions">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Dog Walking FAQs</h2>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item premium-glass">
+                        <h3>What routes do you take?</h3>
+                        <p>We vary routes including local beaches, coastal paths, and quiet lanes around Newquay to keep things interesting for your dog. We'll find the best routes for your dog's energy level and temperament.</p>
+                    </div>
+                    <div class="faq-item premium-glass">
+                        <h3>Do you walk in the rain?</h3>
+                        <p>Yes, rain or shine — every walk goes ahead. We carry professional drying equipment so your dog is returned as clean and dry as possible, no matter the weather.</p>
+                    </div>
+                    <div class="faq-item premium-glass">
+                        <h3>Can you walk reactive dogs?</h3>
+                        <p>We assess each dog individually at the free meet & greet. We have experience working with reactive dogs and will tailor the walk — route, timing and group size — to your dog's needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section aria-label="Dog walking reviews">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What Dog Owners Say</h2>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card premium-glass">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-quote">"Oli is brilliant at his job and my dog loves him. He is really flexible and will walk my dog at short notice. Highly recommend."</p>
+                        <p class="review-author">— Sue Lake</p>
+                    </div>
+                    <div class="review-card premium-glass">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-quote">"Been walking our dog Rupert for over 2 years now... especially enjoy the app updates! I can highly recommend."</p>
+                        <p class="review-author">— Radram</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="/reviews.html" class="cta-button secondary">Read All Reviews &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cross-Link -->
+        <section aria-label="Related services">
+            <div class="container">
+                <div class="cross-link-box premium-glass" style="text-align: center; padding: 3rem 2rem;">
+                    <h2>Need a Full Day?</h2>
+                    <p>If your dog needs more than a walk, our Weekend Daycare takes them on a full-day adventure to Bodmin Moor, beaches and woodlands from 09:00 to 16:30.</p>
+                    <a href="/weekend-dog-daycare-newquay.html" class="cta-button primary">Try Our Weekend Daycare &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section id="contact" aria-label="Contact us">
+            <div class="container">
+                <div class="contact-box premium-glass">
+                    <h2>Book Your Dog's First Walk</h2>
+                    <p>Get in touch to arrange a free meet & greet. We'll visit you at home, meet your dog, and plan the perfect walking schedule.</p>
+                    <div class="contact-methods">
+                        <a href="tel:07743019202" class="contact-method">
+                            <span class="icon">📞</span>
+                            <span class="details">
+                                <span class="label">Call / Text</span>
+                                <span class="value">07743019202</span>
+                            </span>
+                        </a>
+                        <a href="https://wa.me/qr/MWIQHF6UPTQKC1" target="_blank" class="contact-method">
+                            <span class="icon">💬</span>
+                            <span class="details">
+                                <span class="label">WhatsApp</span>
+                                <span class="value">Chat with us</span>
+                            </span>
+                        </a>
+                        <a href="mailto:hello@newquaysundownwalks.co.uk" class="contact-method">
+                            <span class="icon">✉️</span>
+                            <span class="details">
+                                <span class="label">Email</span>
+                                <span class="value">hello@newquaysundownwalks.co.uk</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <div>
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/dog-walking-newquay.html">Dog Walking</a></li>
+                        <li><a href="/weekend-dog-daycare-newquay.html">Weekend Daycare</a></li>
+                        <li><a href="/pet-sitting-newquay.html">Pet Sitting</a></li>
+                        <li><a href="/pop-in-visits-newquay.html">Pop-In Visits</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="/areas-we-cover.html">Areas We Cover</a></li>
+                        <li><a href="/reviews.html">Reviews</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get In Touch</h4>
+                    <ul>
+                        <li><a href="tel:07743019202">07743019202</a></li>
+                        <li><a href="mailto:hello@newquaysundownwalks.co.uk">hello@newquaysundownwalks.co.uk</a></li>
+                        <li><a href="https://wa.me/qr/MWIQHF6UPTQKC1" target="_blank">WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <img src="images/sundown-walks-logo.webp" alt="Newquay Sundown Walks" class="footer-logo">
+                <p>&copy; 2026 Newquay Sundown Walks. Evening Walks, Weekend Adventures & Holiday Pet Sitting.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="shared.js" defer></script>
+</body>
+</html>

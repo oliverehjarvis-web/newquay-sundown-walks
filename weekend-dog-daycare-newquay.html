@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Weekend dog daycare in Newquay. Full day adventures (09:00-16:30) to Bodmin Moor & Cornish beaches. Transport included. £30/day. Small pack, big adventures.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Newquay Sundown Walks">
+    <meta name="geo.region" content="GB-CON">
+    <meta name="geo.placename" content="Newquay">
+    <title>Weekend Dog Daycare in Newquay | Bodmin Moor & Beach Adventures | From £30</title>
+
+    <link rel="canonical" href="https://newquaysundownwalks.co.uk/weekend-dog-daycare-newquay.html">
+    <link rel="icon" href="images/sundown-walks-logo.webp">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://newquaysundownwalks.co.uk/weekend-dog-daycare-newquay.html">
+    <meta property="og:title" content="Weekend Dog Daycare in Newquay | Bodmin Moor & Beach Adventures | From £30">
+    <meta property="og:description" content="Weekend dog daycare in Newquay. Full day adventures (09:00-16:30) to Bodmin Moor & Cornish beaches. Transport included. £30/day. Small pack, big adventures.">
+    <meta property="og:image" content="https://newquaysundownwalks.co.uk/images/dogs-swimming-in-lake.webp">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Weekend Dog Daycare in Newquay | Bodmin Moor & Beach Adventures | From £30">
+    <meta name="twitter:description" content="Weekend dog daycare in Newquay. Full day adventures (09:00-16:30) to Bodmin Moor & Cornish beaches. Transport included. £30/day.">
+    <meta name="twitter:image" content="https://newquaysundownwalks.co.uk/images/dogs-swimming-in-lake.webp">
+
+    <!-- Structured Data: Service -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Weekend Dog Daycare",
+        "description": "Full day weekend dog daycare in Newquay, Cornwall. Adventures to Bodmin Moor, woodlands and dog-friendly beaches. 09:00-16:30 with transport included.",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "Newquay Sundown Walks",
+            "url": "https://newquaysundownwalks.co.uk"
+        },
+        "areaServed": {
+            "@type": "City",
+            "name": "Newquay"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "30.00",
+            "priceCurrency": "GBP",
+            "description": "Full day daycare 09:00-16:30, transport included"
+        }
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Where do you go for Daycare?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We vary our locations to keep things exciting! Regular spots include Bodmin Moor, expansive woodlands, and dog-friendly beaches across Cornwall. The destination depends on the weather, the pack, and the season."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you take unneutered dogs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We assess each dog individually during our meet & greet. Safety and pack harmony are our top priorities, so we'll have an honest conversation about whether daycare is the right fit."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What about anxious dogs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We keep our pack sizes small deliberately, which means less overwhelm for nervous dogs. We also offer gradual introductions — your dog can start with a shorter session alongside just one calm companion before joining the full group."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="starsCanvas"></canvas>
+    <div class="menu-overlay"></div>
+    <a href="/contact.html" class="floating-book-btn">
+        <span class="btn-icon">📅</span>
+        <span class="btn-text">Book Now</span>
+    </a>
+    <a href="https://wa.me/qr/MWIQHF6UPTQKC1" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.826.735 5.479 2.016 7.786L0 32l8.433-2.015A15.93 15.93 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.334c-2.568 0-5.053-.739-7.193-2.133l-.516-.306-5.345 1.279 1.279-5.345-.306-.516A13.264 13.264 0 012.666 16c0-7.364 5.97-13.334 13.334-13.334S29.334 8.636 29.334 16 23.364 29.334 16 29.334z"/>
+            <path d="M23.567 19.433c-.4-.2-2.367-1.167-2.734-1.3-.366-.134-.633-.2-.9.2-.266.4-1.033 1.3-1.267 1.567-.233.266-.466.3-.866.1-.4-.2-1.687-.622-3.213-1.98-1.188-1.058-1.99-2.365-2.223-2.765-.234-.4-.025-.616.175-.816.18-.18.4-.466.6-.7.2-.233.267-.4.4-.667.133-.266.067-.5-.033-.7-.1-.2-.9-2.167-1.233-2.967-.324-.778-.654-.673-.9-.686-.233-.012-.5-.015-.767-.015s-.7.1-1.067.5c-.366.4-1.4 1.367-1.4 3.333s1.434 3.867 1.634 4.133c.2.267 2.833 4.325 6.866 6.067.959.413 1.708.66 2.292.845.963.306 1.839.263 2.531.159.772-.115 2.367-.967 2.7-1.9.333-.933.333-1.733.233-1.9-.1-.167-.367-.267-.767-.467z"/>
+        </svg>
+    </a>
+
+    <header>
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="/" class="logo-container">
+                <img src="images/sundown-walks-logo.webp" alt="Newquay Sundown Walks Logo" class="logo-img">
+            </a>
+            <div class="nav-right">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <span class="icon">🌙</span>
+                </button>
+                <button class="hamburger" aria-label="Open Menu">☰</button>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/dog-walking-newquay.html">Dog Walking</a></li>
+                    <li><a href="/weekend-dog-daycare-newquay.html" class="nav-active">Daycare</a></li>
+                    <li><a href="/pet-sitting-newquay.html">Pet Sitting</a></li>
+                    <li><a href="/reviews.html">Reviews</a></li>
+                    <li><a href="/contact.html" class="nav-cta">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Page Hero -->
+        <section class="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('images/dogs-swimming-in-lake.webp');">
+            <div class="hero-content">
+                <h1>Weekend Dog Daycare in Newquay, Cornwall</h1>
+                <p>Full day adventures to Bodmin Moor, woodlands & beaches. Small pack, big adventures.</p>
+            </div>
+        </section>
+
+        <!-- Breadcrumb -->
+        <section style="padding: 0;">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a> <span>&rsaquo;</span> <span>Weekend Daycare</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Service Detail -->
+        <section style="padding-top: 40px;">
+            <div class="container service-detail">
+                <h2>More Than Just Daycare</h2>
+                <p>Our weekend daycare isn't a kennel with a garden. It's a genuine full-day adventure. Every Saturday and Sunday, we collect a small pack of dogs from their homes across Newquay and head out to some of the most beautiful landscapes Cornwall has to offer — from the wild open moorland of Bodmin to the quiet coves and river trails near Crantock.</p>
+                <p>We keep our group deliberately small (never more than four dogs at a time) so every dog gets proper attention, proper socialisation, and a proper adventure. Your dog will spend the day hiking, swimming, sniffing, and playing in the fresh Cornish air — then come home tired, happy, and ready to sleep.</p>
+                <p>Transport is included in the price. We pick up from your door in the morning and drop off in the afternoon. You'll receive photo updates throughout the day so you can see exactly what your dog has been up to.</p>
+
+                <!-- Timeline -->
+                <h2>A Typical Daycare Day</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-time">09:00</span>
+                        <span class="timeline-desc">Pick-up from your home</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">09:30</span>
+                        <span class="timeline-desc">Pack assembles, head to the day's location</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">10:00</span>
+                        <span class="timeline-desc">Arrive and explore — hiking, swimming, sniffing</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">12:00</span>
+                        <span class="timeline-desc">Rest, water break, and training games</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">13:00</span>
+                        <span class="timeline-desc">More adventures — different trail or beach section</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">15:00</span>
+                        <span class="timeline-desc">Wind down, final rinse and dry</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">16:00</span>
+                        <span class="timeline-desc">Head home</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-time">16:30</span>
+                        <span class="timeline-desc">Drop-off, happy and tired</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Where We Go -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Where We Go</h2>
+                    <p>We rotate locations to keep every day fresh. Here are some of our regulars.</p>
+                </div>
+                <div class="location-grid">
+                    <div class="premium-glass location-card">
+                        <img src="images/colan.webp" alt="Colan woods near Newquay, a peaceful trail for dog daycare adventures" loading="lazy">
+                        <div class="location-content">
+                            <h3>Colan & Ellenglaze</h3>
+                            <p>Quiet woodland trails and open fields just outside Newquay. Perfect for dogs who love to sniff and explore without the crowds.</p>
+                        </div>
+                    </div>
+                    <div class="premium-glass location-card">
+                        <img src="images/sang.webp" alt="Sang and Crantock area, river trails and beaches for dogs" loading="lazy">
+                        <div class="location-content">
+                            <h3>Sang & Crantock</h3>
+                            <p>River paths, sandy beaches, and sheltered swimming spots. A favourite for dogs who love water and wide-open spaces.</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 30px;">
+                    <a href="/areas-we-cover.html" class="text-link">See all the areas we cover &rarr;</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Adventures in Action</h2>
+                    <p>A glimpse of what daycare days look like.</p>
+                </div>
+                <div class="photo-grid">
+                    <img src="images/dogs-playing-near-river.webp" alt="Dogs playing near a river during weekend daycare in Newquay" class="gallery-img" loading="lazy">
+                    <img src="images/staffie-in-stream.webp" alt="Staffordshire Bull Terrier playing in a stream on a daycare adventure" class="gallery-img" loading="lazy">
+                    <img src="images/two-dogs-in-field.webp" alt="Two dogs running through a Cornish field on a daycare day" class="gallery-img" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Daycare Pricing</h2>
+                    <p>One simple price. Everything included.</p>
+                </div>
+                <div class="pricing-container">
+                    <div class="premium-glass pricing-card featured">
+                        <span class="badge">Weekend Daycare</span>
+                        <h3>Full Day Adventure</h3>
+                        <p class="price">&pound;30</p>
+                        <p class="price-sub">per day &middot; 09:00 &ndash; 16:30</p>
+                        <hr>
+                        <ul>
+                            <li>&#10003; Pick-up and drop-off from your door</li>
+                            <li>&#10003; Full day of hiking, swimming & exploring</li>
+                            <li>&#10003; Small pack sizes (max 4 dogs)</li>
+                            <li>&#10003; Photo updates throughout the day</li>
+                            <li>&#10003; Rinse and dry before drop-off</li>
+                            <li>&#10003; Fresh water and treats provided</li>
+                            <li>&#10003; Fully insured & canine first aid certified</li>
+                        </ul>
+                        <a href="/contact.html" class="btn-filled">Book a Meet &amp; Greet</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Daycare FAQs</h2>
+                </div>
+                <div class="faq-grid">
+                    <div class="premium-glass faq-item" style="padding: 30px;">
+                        <h3>Where do you go for Daycare?</h3>
+                        <p>We vary our locations to keep things exciting! Regular spots include Bodmin Moor, expansive woodlands, and dog-friendly beaches across Cornwall. The destination depends on the weather, the pack, and the season.</p>
+                    </div>
+                    <div class="premium-glass faq-item" style="padding: 30px;">
+                        <h3>Do you take unneutered dogs?</h3>
+                        <p>We assess each dog individually during our meet &amp; greet. Safety and pack harmony are our top priorities, so we'll have an honest conversation about whether daycare is the right fit.</p>
+                    </div>
+                    <div class="premium-glass faq-item" style="padding: 30px;">
+                        <h3>What about anxious dogs?</h3>
+                        <p>We keep our pack sizes small deliberately, which means less overwhelm for nervous dogs. We also offer gradual introductions — your dog can start with a shorter session alongside just one calm companion before joining the full group.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <h2>What Our Daycare Families Say</h2>
+                </div>
+                <div class="review-grid">
+                    <div class="premium-glass review-card">
+                        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text">"Meg absolutely loves her day with Oli and I always have a peaceful evening as she snoozes after her big adventure. Can't recommend enough — she gets so excited when she sees the car pull up!"</p>
+                        <p class="review-author">Janet Elston</p>
+                        <span class="review-tag">Weekend Daycare</span>
+                    </div>
+                    <div class="premium-glass review-card">
+                        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text">"Oli and the team treat my mad staffy like one of the family. Could not recommend them highly enough — she comes home absolutely shattered and happy every single time."</p>
+                        <p class="review-author">Vivian Swift</p>
+                        <span class="review-tag">Weekend Daycare</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cross-link -->
+        <section style="padding: 40px 0;">
+            <div class="container">
+                <div class="premium-glass cross-link">
+                    <p>Just need an evening walk? We offer professional dog walking across Newquay, every evening from 5pm.</p>
+                    <a href="/dog-walking-newquay.html" class="cta-button primary">Evening Dog Walking &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section>
+            <div class="container">
+                <div class="contact-box">
+                    <h2>Ready to Book?</h2>
+                    <p>Every daycare dog starts with a free meet &amp; greet so we can get to know each other. Get in touch to arrange yours.</p>
+                    <div class="contact-methods">
+                        <a href="tel:07743019202" class="contact-method">
+                            <span class="icon">📞</span>
+                            <div class="details">
+                                <span class="label">Phone</span>
+                                <span class="value">07743 019 202</span>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/qr/MWIQHF6UPTQKC1" target="_blank" class="contact-method">
+                            <span class="icon">💬</span>
+                            <div class="details">
+                                <span class="label">WhatsApp</span>
+                                <span class="value">Message us now</span>
+                            </div>
+                        </a>
+                        <a href="mailto:hello@newquaysundownwalks.co.uk" class="contact-method">
+                            <span class="icon">📧</span>
+                            <div class="details">
+                                <span class="label">Email</span>
+                                <span class="value">hello@newquaysundownwalks.co.uk</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <div>
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/dog-walking-newquay.html">Dog Walking</a></li>
+                        <li><a href="/weekend-dog-daycare-newquay.html">Weekend Daycare</a></li>
+                        <li><a href="/pet-sitting-newquay.html">Pet Sitting</a></li>
+                        <li><a href="/pop-in-visits-newquay.html">Pop-In Visits</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="/areas-we-cover.html">Areas We Cover</a></li>
+                        <li><a href="/reviews.html">Reviews</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get In Touch</h4>
+                    <ul>
+                        <li><a href="tel:07743019202">07743019202</a></li>
+                        <li><a href="mailto:hello@newquaysundownwalks.co.uk">hello@newquaysundownwalks.co.uk</a></li>
+                        <li><a href="https://wa.me/qr/MWIQHF6UPTQKC1" target="_blank">WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <img src="images/sundown-walks-logo.webp" alt="Newquay Sundown Walks" class="footer-logo">
+                <p>&copy; 2026 Newquay Sundown Walks. Evening Walks, Weekend Adventures & Holiday Pet Sitting.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="shared.js" defer></script>
+</body>
+</html>
